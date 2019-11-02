@@ -29,6 +29,6 @@ jobs:
       run: npm build
 
     - name: run
-      run: node lib/setup-racket.ts
+      run: node lib/setup-racket.js
       env:
         INPUT_RACKET_VERSION: 7.4
