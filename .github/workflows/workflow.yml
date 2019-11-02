@@ -29,3 +29,6 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VERSION: 7.4
+
+    - name: test Racket
+      run: racket -e '(displayln "hi!")'
