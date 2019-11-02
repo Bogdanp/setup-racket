@@ -75,7 +75,7 @@ export async function install(
   await fs.promises.writeFile(
     '/tmp/install-racket.sh',
     `
-echo "yes\n1\n" | sh ${path} --create-dir --unix-style --dest /usr/
+echo "yes\n1\n" | sudo sh ${path} --create-dir --unix-style --dest /usr/
 `
   );
   await exec.exec('sh', ['/tmp/install-racket.sh']);
