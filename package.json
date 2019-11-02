@@ -1,0 +1,50 @@
+{
+  "name": "setup-racket",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Setup Racket action",
+  "main": "lib/setup-racket.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bogdanp/setup-racket.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "setup"
+  ],
+  "author": "Bogdanp",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.0.0",
+    "@actions/exec": "^1.0.1",
+    "@actions/tool-cache": "^1.0.0",
+    "semver": "^6.1.1"
+  },
+  "devDependencies": {
+    "@actions/io": "^1.0.0",
+    "@types/jest": "^24.0.13",
+    "@types/node": "^12.0.4",
+    "@types/semver": "^6.0.0",
+    "husky": "^3.0.9",
+    "jest": "^24.8.0",
+    "jest-circus": "^24.7.1",
+    "prettier": "^1.17.1",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.20.0",
+    "typescript": "^3.5.1"
+  },
+  "husky": {
+    "skipCI": true,
+    "hooks": {
+      "pre-commit": "npm run build && npm run format",
+      "post-commit": "npm prune --production && git add node_modules/* && git commit -m \"Husky commit correct node modules\""
+    }
+  }
+}
