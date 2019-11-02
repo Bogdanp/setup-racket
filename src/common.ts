@@ -32,8 +32,8 @@ const RACKET_EXTS: {[key: string]: string} = {
 export function makeInstallerURL(
   version: string,
   arch: Arch,
-  variant: Variant,
   distribution: Distribution,
+  variant: Variant,
   platform: Platform
 ) {
   const racketArch = RACKET_ARCHS[`${arch}-${platform}`];
@@ -59,15 +59,15 @@ export function makeInstallerURL(
 export async function install(
   version: string,
   arch: Arch,
-  variant: Variant,
-  distribution: Distribution
+  distribution: Distribution,
+  variant: Variant
 ) {
   const path = await tc.downloadTool(
     makeInstallerURL(
       version,
       arch,
-      variant,
       distribution,
+      variant,
       process.platform as Platform
     )
   );

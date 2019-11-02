@@ -19,10 +19,10 @@ steps:
 - uses: actions/checkout@master
 - uses: Bogdanp/setup-racket@v1
   with:
-    racket-distribution: 'full'  # or 'minimal'
-    racket-variant: 'regular'    # or 'CS' for Racket-on-Chez
-    racket-version: '7.4'
-    architecture: 'x64'          # (x64 or x86), ignored on Linux
+    architecture: 'x64'   # (x64 or x86), ignored on Linux
+    distribution: 'full'  # or 'minimal'
+    variant: 'regular'    # or 'CS' for Racket-on-Chez
+    version: '7.4'
 - run: racket hello.rkt
 ```
 
@@ -40,8 +40,8 @@ jobs:
       - name: Setup Racket
         uses: Bogdanp/setup-racket@v1
         with:
-          racket-version: ${{ matrix.racket-version }}
           architecture: x64
+          version: ${{ matrix.racket-version }}
       - run: racket hello.rkt
 ```
 
