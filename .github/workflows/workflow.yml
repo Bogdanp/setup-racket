@@ -31,4 +31,4 @@ jobs:
     - name: run
       run: node lib/setup-racket.js
       env:
-        INPUT_RACKET_VERSION: 7.4
+        INPUT_VERSION: 7.4
