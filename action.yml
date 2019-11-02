@@ -1,6 +1,9 @@
 name: 'Setup Racket environment'
 description: 'Setup a Racket environment and add it to the PATH, additionally providing proxy support'
-author: 'GitHub'
+author: 'Bogdanp'
+branding:
+  icon: 'play'
+  color: 'blue'
 inputs:
   architecture:
     description: 'The target architecture (x86, x64) of the Racket interpreter.'
