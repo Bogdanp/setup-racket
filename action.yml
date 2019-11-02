@@ -2,12 +2,18 @@ name: 'Setup Racket environment'
 description: 'Setup a Racket environment and add it to the PATH, additionally providing proxy support'
 author: 'GitHub'
 inputs:
-  racket-version:
-    description: 'Version range or exact version of a Racket version to use.'
-    default: '7.4'
   architecture:
     description: 'The target architecture (x86, x64) of the Racket interpreter.'
     default: 'x64'
+  distribution:
+    description: 'The target distribution (minimal, full) of Racket.'
+    default: 'full'
+  variant:
+    description: 'The target variant (regular, CS) of Racket.'
+    default: 'regular'
+  version:
+    description: 'Version range or exact version of a Racket version to use.'
+    default: '7.4'
 runs:
   using: 'node12'
   main: 'lib/setup-racket.js'

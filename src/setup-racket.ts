@@ -11,8 +11,6 @@ import * as common from './common';
     );
     const variant = common.parseVariant(core.getInput('variant') || 'regular');
     await common.install(version, arch, distribution, variant);
-    const matchersPath = path.join(__dirname, '..', '.github');
-    console.log(`##[add-matcher]${path.join(matchersPath, 'racket.json')}`);
   } catch (err) {
     core.setFailed(err.message);
   }

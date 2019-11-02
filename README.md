@@ -4,16 +4,14 @@
   <a href="https://github.com/Bogdanp/setup-racket"><img alt="GitHub Actions status" src="https://github.com/Bogdanp/setup-racket/workflows/Main%20workflow/badge.svg"></a>
 </p>
 
-This action sets up a Racket environment for use in actions by
-
-* installing a version of Racket and adding to PATH and
-* registering problem matchers for error output.
+This action sets up a Racket environment for use in GitHub Actions.
 
 # Usage
 
 See [action.yml](action.yml)
 
 Basic:
+
 ```yaml
 steps:
 - uses: actions/checkout@master
@@ -27,6 +25,7 @@ steps:
 ```
 
 Matrix Testing:
+
 ```yaml
 jobs:
   build:
