@@ -1,7 +1,7 @@
 # setup-racket
 
 <p align="left">
-  <a href="https://github.com/Bogdanp/setup-racket"><img alt="GitHub Actions status" src="https://github.com/Bogdanp/setup-racket/workflows/Main%20workflow/badge.svg"></a>
+  <a href="https://github.com/Bogdanp/setup-racket/actions?query=workflow%3A%22CI%22"><img alt="GitHub Actions status" src="https://github.com/Bogdanp/setup-racket/workflows/CI/badge.svg"></a>
 </p>
 
 This action sets up a Racket environment for use in GitHub Actions.
