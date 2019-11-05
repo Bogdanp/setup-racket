@@ -15,7 +15,7 @@ Basic:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v0.1
+- uses: Bogdanp/setup-racket@v0.2
   with:
     architecture: 'x64'   # (x64 or x86), ignored on Linux
     distribution: 'full'  # or 'minimal'
@@ -37,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v0.1
+        uses: Bogdanp/setup-racket@v0.2
         with:
           architecture: x64
           version: ${{ matrix.racket-version }}
