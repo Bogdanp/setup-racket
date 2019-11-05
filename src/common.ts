@@ -3,7 +3,6 @@ import * as tc from '@actions/tool-cache';
 import * as fs from 'fs';
 
 export type Arch = 'x86' | 'x64';
-
 export type Variant = 'regular' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
@@ -40,15 +39,30 @@ export function makeInstallerURL(
   const racketPlatform = RACKET_PLATFORMS[platform];
   const racketExt = RACKET_EXTS[platform];
 
+  let base = `https://mirror.racket-lang.org/installers/${version}`;
+  if (version === 'current') {
+    base = 'https://www.cs.utah.edu/plt/snapshots/current/installers';
+  }
+
+  let minimalPrefix = 'racket-minimal';
+  if (version === 'current') {
+    minimalPrefix = 'min-racket';
+  }
+
+  let suffix = '';
+  if (version === 'current' && platform === 'linux') {
+    suffix = variant === 'CS' ? '-xenial' : '-precise';
+  }
+
   switch (`${distribution}-${variant}`) {
     case 'minimal-regular':
-      return `https://mirror.racket-lang.org/installers/${version}/racket-minimal-${version}-${racketArch}-${racketPlatform}.${racketExt}`;
+      return `${base}/${minimalPrefix}-${version}-${racketArch}-${racketPlatform}${suffix}.${racketExt}`;
     case 'minimal-CS':
-      return `https://mirror.racket-lang.org/installers/${version}/racket-minimal-${version}-${racketArch}-${racketPlatform}-cs.${racketExt}`;
+      return `${base}/${minimalPrefix}-${version}-${racketArch}-${racketPlatform}-cs${suffix}.${racketExt}`;
     case 'full-regular':
-      return `https://mirror.racket-lang.org/installers/${version}/racket-${version}-${racketArch}-${racketPlatform}.${racketExt}`;
+      return `${base}/racket-${version}-${racketArch}-${racketPlatform}${suffix}.${racketExt}`;
     case 'full-CS':
-      return `https://mirror.racket-lang.org/installers/${version}/racket-${version}-${racketArch}-${racketPlatform}-cs.${racketExt}`;
+      return `${base}/racket-${version}-${racketArch}-${racketPlatform}-cs${suffix}.${racketExt}`;
     default:
       throw new Error(
         `invalid distribution and variant pair: ${distribution}, ${variant}`

@@ -4,6 +4,10 @@ jobs:
   run:
     name: Run
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        racket-version: ["7.3", "7.4", "current"]
+    name: "Build using Racket '${{ matrix.racket-version }}'"
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -28,7 +32,7 @@ jobs:
     - name: run
       run: node lib/setup-racket.js
       env:
-        INPUT_VERSION: 7.4
+        INPUT_VERSION: ${{ matrix.racket-version }}
 
     - name: test Racket
       run: racket -e '(displayln "hi!")'

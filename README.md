@@ -20,7 +20,7 @@ steps:
     architecture: 'x64'   # (x64 or x86), ignored on Linux
     distribution: 'full'  # or 'minimal'
     variant: 'regular'    # or 'CS' for Racket-on-Chez
-    version: '7.4'
+    version: '7.4'        # or 'current' for the latest snapshot
 - run: racket hello.rkt
 ```
 
