@@ -2,7 +2,7 @@ name: CI
 on: [push]
 jobs:
   run:
-    name: "Build using Racket '${{ matrix.racket-version }}'"
+    name: "Build using Racket '${{ matrix.racket-version }}' (${{ matrix.racket-variant }})"
     runs-on: ubuntu-latest
     strategy:
       matrix:
