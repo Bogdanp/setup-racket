@@ -6,7 +6,7 @@
 
 This action sets up a Racket environment for use in GitHub Actions.
 
-# Usage
+## Usage
 
 See [action.yml](action.yml)
 
@@ -44,6 +44,11 @@ jobs:
       - run: racket hello.rkt
 ```
 
-# License
+## Notes
+
+On Windows, the Racket executable is named `Racket.exe` and the
+filesystem is case-sensitive.  `raco` is named `raco.exe`.
+
+## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE).
