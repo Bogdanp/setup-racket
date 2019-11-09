@@ -76,6 +76,20 @@ export function makeInstallerURL(
   }
 }
 
+async function installDarwin(path: string) {
+  await fs.promises.writeFile(
+    '/tmp/install-racket.sh',
+    `
+sudo hdiutil attach ${path} -mountpoint /Volumes/Racket
+sudo cp -rf /Volumes/Racket/Racket* /Applications/Racket
+sudo hdiutil detach /Volumes/Racket
+sudo ln -s /Applications/Racket/bin/racket /usr/local/bin/racket
+sudo ln -s /Applications/Racket/bin/raco /usr/local/bin/raco
+`
+  );
+  await exec.exec('sh', ['/tmp/install-racket.sh']);
+}
+
 async function installLinux(path: string) {
   await fs.promises.writeFile(
     '/tmp/install-racket.sh',
@@ -155,6 +169,8 @@ export async function install(
   );
 
   switch (process.platform as Platform) {
+    case 'darwin':
+      return await installDarwin(path);
     case 'linux':
       return await installLinux(path);
     case 'win32':

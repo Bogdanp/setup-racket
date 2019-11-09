@@ -6,7 +6,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ["ubuntu-latest", "windows-latest"]
+        os: ["macos-latest", "ubuntu-latest", "windows-latest"]
         racket-version: ["7.4", "current"]
         racket-variant: ["regular", "CS"]
     steps:
@@ -38,7 +38,7 @@ jobs:
 
     - name: test Racket on unix
       run: racket -e '(displayln 42)'
-      if: matrix['os'] == 'ubuntu-latest'
+      if: matrix['os'] == 'macos-latest' || matrix['os'] == 'ubuntu-latest'
 
     - name: test Racket on Windows
       run: Racket -e '(displayln 42)'
