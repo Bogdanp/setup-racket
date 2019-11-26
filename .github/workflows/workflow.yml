@@ -5,6 +5,7 @@ jobs:
     name: "Build using Racket '${{ matrix.racket-version }}' (${{ matrix.racket-variant }}) on '${{ matrix.os }}'"
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
         racket-version: ["7.4", "current"]
