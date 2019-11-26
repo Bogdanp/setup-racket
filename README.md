@@ -15,7 +15,7 @@ Basic:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v0.4
+- uses: Bogdanp/setup-racket@v0.5
   with:
     architecture: 'x64'   # (x64 or x86), ignored on Linux
     distribution: 'full'  # or 'minimal'
