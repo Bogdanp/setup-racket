@@ -39,4 +39,3 @@ jobs:
 
     - name: test racket
       run: racket -e '(displayln 42)'
-      if: matrix['os'] == 'macos-latest' || matrix['os'] == 'ubuntu-latest'
