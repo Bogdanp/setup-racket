@@ -40,9 +40,7 @@ jobs:
     - name: test Racket on unix
       run: racket -e '(displayln 42)'
       if: matrix['os'] == 'macos-latest' || matrix['os'] == 'ubuntu-latest'
-      continue-on-error: matrix['racket-version'] == 'current'
 
     - name: test Racket on Windows
       run: Racket -e '(displayln 42)'
       if: matrix['os'] == 'windows-latest'
-      continue-on-error: matrix['racket-version'] == 'current'
