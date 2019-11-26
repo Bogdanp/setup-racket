@@ -37,10 +37,6 @@ jobs:
         INPUT_VARIANT: ${{ matrix.racket-variant }}
         INPUT_VERSION: ${{ matrix.racket-version }}
 
-    - name: test Racket on unix
+    - name: test racket
       run: racket -e '(displayln 42)'
       if: matrix['os'] == 'macos-latest' || matrix['os'] == 'ubuntu-latest'
-
-    - name: test Racket on Windows
-      run: Racket -e '(displayln 42)'
-      if: matrix['os'] == 'windows-latest'

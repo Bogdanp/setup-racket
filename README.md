@@ -44,11 +44,6 @@ jobs:
       - run: racket hello.rkt
 ```
 
-## Notes
-
-On Windows, the Racket executable is named `Racket.exe` and the
-filesystem is case-sensitive.  `raco` is named `raco.exe`.
-
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE).

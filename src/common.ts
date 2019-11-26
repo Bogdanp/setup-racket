@@ -152,7 +152,12 @@ Install-ChocolateyPackage @packageArgs
     }
   }
 
-  core.addPath(`${programFilesPath}\\${installDir}`);
+  const racketPath = `${programFilesPath}\\${installDir}`;
+  await fs.promises.copyFile(
+    `${racketPath}\\Racket.exe`,
+    `${racketPath}\\racket.exe`
+  );
+  core.addPath(racketPath);
 }
 
 export async function install(
