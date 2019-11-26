@@ -153,7 +153,7 @@ Install-ChocolateyPackage @packageArgs
   }
 
   const racketPath = `${programFilesPath}\\${installDir}`;
-  await fs.promises.copyFile(
+  await fs.promises.rename(
     `${racketPath}\\Racket.exe`,
     `${racketPath}\\racket.exe`
   );
