@@ -1,5 +1,5 @@
 name: CI
-on: [push]
+on: [push, pull_request]
 jobs:
   run:
     name: "Build using Racket '${{ matrix.racket-version }}' (${{ matrix.racket-variant }}) on '${{ matrix.os }}'"
