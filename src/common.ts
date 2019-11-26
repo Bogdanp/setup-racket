@@ -8,11 +8,6 @@ export type Variant = 'regular' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
 
-// This is pretty gross. It's used on Windows to figure out how to set
-// up the PATH and will have to change every time the current snapshot
-// version changes.
-const SNAPSHOT_VERSION_SUFFIX = '7.5.0.6';
-
 const RACKET_ARCHS: {[key: string]: string} = {
   'x86-darwin': 'i386',
   'x64-darwin': 'x86_64',
@@ -140,16 +135,24 @@ Install-ChocolateyPackage @packageArgs
   await exec.exec('choco pack');
   await exec.exec('choco install racket -s .');
 
-  const installSuffix =
-    version === 'current' ? `-${SNAPSHOT_VERSION_SUFFIX}` : '';
-  let installPath: string;
+  let programFilesPath: string;
   if (arch === 'x86') {
-    installPath = `C:\\Program Files (x86)\\Racket${installSuffix}`;
+    programFilesPath = `C:\\Program Files (x86)`;
   } else {
-    installPath = `C:\\Program Files\\Racket${installSuffix}`;
+    programFilesPath = `C:\\Program Files`;
   }
 
-  core.addPath(installPath);
+  let installDir = 'Racket';
+  if (version === 'current') {
+    for await (const name of await fs.promises.readdir(programFilesPath)) {
+      if (name.indexOf('Racket') === 0) {
+        installDir = name;
+        break;
+      }
+    }
+  }
+
+  core.addPath(`${programFilesPath}\\${installDir}`);
 }
 
 export async function install(
