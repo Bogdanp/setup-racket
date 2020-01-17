@@ -86,10 +86,23 @@ sudo ln -s /Applications/Racket/bin/raco /usr/local/bin/raco
 }
 
 async function installLinux(path: string) {
+  // This detects whether or not sudo is present in case we're in a
+  // Docker container.  See issue #2.
+  await fs.promises.writeFile(
+    '/tmp/install-racket.impl.sh',
+    `
+echo "yes\n1\n" | sh ${path} --create-dir --unix-style --dest /usr/
+`
+  );
+
   await fs.promises.writeFile(
     '/tmp/install-racket.sh',
     `
-echo "yes\n1\n" | sudo sh ${path} --create-dir --unix-style --dest /usr/
+if command -v sudo; then
+  sudo sh /tmp/install-racket.impl.sh
+else
+  sh /tmp/install-racket.impl.sh
+fi
 `
   );
   await exec.exec('sh', ['/tmp/install-racket.sh']);
