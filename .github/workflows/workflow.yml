@@ -8,7 +8,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-        racket-version: ["7.5", "current"]
+        racket-version: ["7.5", "7.6", "current"]
         racket-variant: ["regular", "CS"]
     steps:
     - name: Checkout
