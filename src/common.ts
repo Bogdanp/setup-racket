@@ -76,10 +76,10 @@ async function installDarwin(path: string) {
     '/tmp/install-racket.sh',
     `
 sudo hdiutil attach ${path} -mountpoint /Volumes/Racket
-sudo cp -rf /Volumes/Racket/Racket* /Applications/Racket
+cp -rf /Volumes/Racket/Racket* /Applications/Racket
 sudo hdiutil detach /Volumes/Racket
-sudo ln -s /Applications/Racket/bin/racket /usr/local/bin/racket
-sudo ln -s /Applications/Racket/bin/raco /usr/local/bin/raco
+ln -s /Applications/Racket/bin/racket /usr/local/bin/racket
+ln -s /Applications/Racket/bin/raco /usr/local/bin/raco
 `
   );
   await exec.exec('sh', ['/tmp/install-racket.sh']);
