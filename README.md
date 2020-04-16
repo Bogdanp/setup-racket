@@ -15,12 +15,12 @@ Basic:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v0.6
+- uses: Bogdanp/setup-racket@v0.7
   with:
     architecture: 'x64'   # (x64 or x86), ignored on Linux
     distribution: 'full'  # or 'minimal'
     variant: 'regular'    # or 'CS' for Racket-on-Chez
-    version: '7.5'        # or 'current' for the latest snapshot
+    version: '7.6'        # or 'current' for the latest snapshot
 - run: racket hello.rkt
 ```
 
@@ -32,12 +32,12 @@ jobs:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        racket-version: [ '7.3', '7.4', '7.5' ]
+        racket-version: [ '7.4', '7.5', '7.6' ]
     name: Racket ${{ matrix.racket-version }} sample
     steps:
       - uses: actions/checkout@master
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v0.6
+        uses: Bogdanp/setup-racket@v0.7
         with:
           architecture: x64
           version: ${{ matrix.racket-version }}
