@@ -40,6 +40,9 @@ jobs:
     - name: test racket
       run: racket -e '(displayln 42)'
 
+    - name: test package installation
+      run: raco pkg install nevermore
+
   # TODO: make this a little less hacky?
   run_docker:
     name: "Build in Docker"
