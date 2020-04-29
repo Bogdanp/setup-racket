@@ -16,7 +16,7 @@ inputs:
     default: 'regular'
   version:
     description: 'Version range or exact version of a Racket version to use.'
-    default: '7.5'
+    default: '7.6'
 runs:
   using: 'node12'
   main: 'lib/setup-racket.js'
