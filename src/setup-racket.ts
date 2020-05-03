@@ -11,6 +11,16 @@ import * as common from './common';
     );
     const variant = common.parseVariant(core.getInput('variant') || 'regular');
     await common.install(version, arch, distribution, variant);
+
+    const catalogs = core.getInput('catalogs', {required: false});
+    if (catalogs.trim() !== '') {
+      await common.setCatalogs(catalogs.split(',').map(c => c.trim()));
+    }
+
+    const packages = core.getInput('packages', {required: false});
+    if (packages.trim() !== '') {
+      await common.installPackages(packages.split(',').map(p => p.trim()));
+    }
   } catch (err) {
     core.setFailed(err.message);
   }

@@ -201,6 +201,22 @@ export async function install(
   }
 }
 
+export async function setCatalogs(catalogs: string[]) {
+  await exec.exec(
+    'raco',
+    ['pkg', 'config', '--set', 'catalogs'].concat(catalogs)
+  );
+}
+
+export async function installPackages(packages: string[]) {
+  await exec.exec(
+    'raco',
+    ['pkg', 'install', '--auto', '--batch', '--no-docs', '--fail-fast'].concat(
+      packages
+    )
+  );
+}
+
 export function parseArch(s: string): Arch {
   if (s !== 'x86' && s !== 'x64') {
     throw new Error(`invalid arch '${s}'`);

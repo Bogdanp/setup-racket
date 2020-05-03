@@ -20,7 +20,22 @@ steps:
     architecture: 'x64'   # (x64 or x86), ignored on Linux
     distribution: 'full'  # or 'minimal'
     variant: 'regular'    # or 'CS' for Racket-on-Chez
-    version: '7.6'        # or 'current' for the latest snapshot
+    version: '7.7'        # or 'current' for the latest snapshot
+- run: racket hello.rkt
+```
+
+Package installation:
+
+```yaml
+steps:
+- uses: actions/checkout@master
+- uses: Bogdanp/setup-racket@v0.7
+  with:
+    architecture: 'x64'          # (x64 or x86), ignored on Linux
+    distribution: 'full'         # or 'minimal'
+    variant: 'regular'           # or 'CS' for Racket-on-Chez
+    version: '7.7'               # or 'current' for the latest snapshot
+    packages: 'component, koyo'  # must be a comma-separated string!
 - run: racket hello.rkt
 ```
 
@@ -32,7 +47,7 @@ jobs:
     runs-on: ubuntu-16.04
     strategy:
       matrix:
-        racket-version: [ '7.4', '7.5', '7.6' ]
+        racket-version: [ '7.4', '7.5', '7.7' ]
     name: Racket ${{ matrix.racket-version }} sample
     steps:
       - uses: actions/checkout@master
@@ -43,6 +58,7 @@ jobs:
           version: ${{ matrix.racket-version }}
       - run: racket hello.rkt
 ```
+
 
 ## License
 
