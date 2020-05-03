@@ -64,7 +64,7 @@ jobs:
     container: debian:buster-slim
     steps:
     - uses: actions/checkout@v1
-    - uses: Bogdanp/setup-racket@install-packages
+    - uses: Bogdanp/setup-racket@master
       with:
         architecture: 'x64'
         distribution: 'full'
