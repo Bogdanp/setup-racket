@@ -8,7 +8,8 @@ This action sets up a Racket environment for use in GitHub Actions.
 
 ## Usage
 
-See [action.yml](action.yml)
+See [action.yml](action.yml) and [this article][article] for a
+tutorial on how to use it.
 
 Basic:
 
@@ -63,3 +64,5 @@ jobs:
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE).
+
+[article]: https://defn.io/2020/05/05/github-actions-for-racket-revised/
