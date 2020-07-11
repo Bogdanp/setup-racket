@@ -40,6 +40,21 @@ steps:
 - run: racket hello.rkt
 ```
 
+Custom location (only on Linux):
+
+```yaml
+steps:
+- uses: actions/checkout@master
+- uses: Bogdanp/setup-racket@v0.8
+  with:
+    architecture: 'x64'          # (x64 or x86), ignored on Linux
+    distribution: 'full'         # or 'minimal'
+    variant: 'regular'           # or 'CS' for Racket-on-Chez
+    version: '7.7'               # or 'current' for the latest snapshot
+    dest: '/opt/racket'          # ignored on macOS and Windows
+- run: racket hello.rkt
+```
+
 Matrix Testing:
 
 ```yaml

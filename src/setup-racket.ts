@@ -1,5 +1,4 @@
 import * as core from '@actions/core';
-import * as path from 'path';
 import * as common from './common';
 
 (async function() {
@@ -10,7 +9,8 @@ import * as common from './common';
       core.getInput('distribution') || 'full'
     );
     const variant = common.parseVariant(core.getInput('variant') || 'regular');
-    await common.install(version, arch, distribution, variant);
+    const dest = core.getInput('dest');
+    await common.install(version, arch, distribution, variant, dest);
 
     const catalogs = core.getInput('catalogs', {required: false});
     if (catalogs.trim() !== '') {

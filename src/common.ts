@@ -85,16 +85,17 @@ ln -s /Applications/Racket/bin/raco /usr/local/bin/raco
   await exec.exec('sh', ['/tmp/install-racket.sh']);
 }
 
-async function installLinux(path: string) {
-  // This detects whether or not sudo is present in case we're in a
-  // Docker container.  See issue #2.
-  await fs.promises.writeFile(
-    '/tmp/install-racket.impl.sh',
-    `
-echo "yes\n1\n" | sh ${path} --create-dir --unix-style --dest /usr/
-`
-  );
+// This detects whether or not sudo is present in case we're in a
+// Docker container.  See issue #2.
+async function installLinux(path: string, dest: string) {
+  let script;
+  if (dest) {
+    script = `sh ${path} --create-dir --in-place --dest ${dest}`;
+  } else {
+    script = `echo "yes\n1\n" | sh ${path} --create-dir --unix-style --dest /usr/`;
+  }
 
+  await fs.promises.writeFile('/tmp/install-racket.impl.sh', script);
   await fs.promises.writeFile(
     '/tmp/install-racket.sh',
     `
@@ -177,7 +178,8 @@ export async function install(
   version: string,
   arch: Arch,
   distribution: Distribution,
-  variant: Variant
+  variant: Variant,
+  dest: string
 ) {
   const path = await tc.downloadTool(
     makeInstallerURL(
@@ -193,7 +195,7 @@ export async function install(
     case 'darwin':
       return await installDarwin(path);
     case 'linux':
-      return await installLinux(path);
+      return await installLinux(path, dest);
     case 'win32':
       return await installWin32(version, arch, path);
     default:

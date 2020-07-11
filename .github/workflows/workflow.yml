@@ -80,3 +80,41 @@ jobs:
         packages: nevermore, component
     - name: test racket
       run: racket -e '(require nevermore) (american-gods)'
+
+  run_multi:
+    name: "Install multiple versions"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 10.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 10.x
+
+    - name: npm install
+      run: npm install
+
+    - name: npm build
+      run: npm build
+
+    - name: install BC
+      run: node lib/setup-racket.js
+      env:
+        INPUT_VARIANT: 'regular'
+        INPUT_VERSION: '7.7'
+        INPUT_DEST: /opt/racketbc
+
+    - name: install CS
+      run: node lib/setup-racket.js
+      env:
+        INPUT_VARIANT: 'regular'
+        INPUT_VERSION: '7.7'
+        INPUT_DEST: /opt/racketcs
+
+    - name: test BC
+      run: /opt/racketbc/bin/racket -e '(displayln 42)'
+
+    - name: test CS
+      run: /opt/racketcs/bin/racket -e '(displayln 42)'
