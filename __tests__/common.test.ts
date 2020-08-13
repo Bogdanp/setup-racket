@@ -62,23 +62,23 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'x64', 'full', 'regular', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-precise.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-precise-bc.sh'
       ],
       [
         ['current', 'x64', 'full', 'CS', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-cs-xenial.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-xenial-cs.sh'
       ],
       [
         ['current', 'x64', 'minimal', 'regular', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/min-racket-current-x86_64-linux-precise.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-precise-bc.sh'
       ],
       [
         ['current', 'x64', 'minimal', 'CS', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/min-racket-current-x86_64-linux-cs-xenial.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-xenial-cs.sh'
       ],
       [
         ['current', 'x64', 'full', 'regular', 'darwin'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx.dmg'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx-bc.dmg'
       ],
       [
         ['current', 'x64', 'full', 'CS', 'darwin'],
@@ -86,15 +86,15 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'x64', 'minimal', 'regular', 'darwin'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/min-racket-current-x86_64-macosx.dmg'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-bc.dmg'
       ],
       [
         ['current', 'x64', 'minimal', 'CS', 'darwin'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/min-racket-current-x86_64-macosx-cs.dmg'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-cs.dmg'
       ],
       [
         ['current', 'x64', 'full', 'regular', 'win32'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32.exe'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32-bc.exe'
       ],
       [
         ['current', 'x64', 'full', 'CS', 'win32'],
@@ -102,11 +102,11 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'x64', 'minimal', 'regular', 'win32'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/min-racket-current-x86_64-win32.exe'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-bc.exe'
       ],
       [
         ['current', 'x64', 'minimal', 'CS', 'win32'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/min-racket-current-x86_64-win32-cs.exe'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-cs.exe'
       ]
     ];
 
