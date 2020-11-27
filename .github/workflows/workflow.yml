@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-        racket-version: ["7.6", "7.7", "7.8", "current"]
-        racket-variant: ["regular", "CS"]
+        racket-version: ["7.7", "7.8", "7.9", "current"]
+        racket-variant: ["BC", "CS"]
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -60,7 +60,7 @@ jobs:
         architecture: 'x64'
         distribution: 'full'
         variant: 'CS'
-        version: '7.8'
+        version: '7.9'
     - name: test racket
       run: racket -e '(displayln 42)'
 
@@ -75,7 +75,7 @@ jobs:
         architecture: 'x64'
         distribution: 'full'
         variant: 'CS'
-        version: '7.8'
+        version: '7.9'
         catalogs: 'http://racksnaps.defn.io/built-snapshots/2020/05/02/catalog/'
         packages: nevermore, component
     - name: test racket
@@ -102,15 +102,15 @@ jobs:
     - name: install BC
       run: node lib/setup-racket.js
       env:
-        INPUT_VARIANT: 'regular'
-        INPUT_VERSION: '7.8'
+        INPUT_VARIANT: 'BC'
+        INPUT_VERSION: '7.9'
         INPUT_DEST: /opt/racketbc
 
     - name: install CS
       run: node lib/setup-racket.js
       env:
-        INPUT_VARIANT: 'regular'
-        INPUT_VERSION: '7.8'
+        INPUT_VARIANT: 'BC'
+        INPUT_VERSION: '7.9'
         INPUT_DEST: /opt/racketcs
 
     - name: test BC
