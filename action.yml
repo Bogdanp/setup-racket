@@ -1,22 +1,22 @@
 name: 'Setup Racket environment'
-description: 'Setup a Racket environment and add it to the PATH, additionally providing proxy support'
+description: 'Setup a Racket environment and add it to the PATH.'
 author: 'Bogdanp'
 branding:
   icon: 'play'
   color: 'blue'
 inputs:
   architecture:
-    description: 'The target architecture (x86, x64) of the Racket interpreter.'
+    description: 'The target architecture (arm32, arm64, x86, x64) of the Racket VM.'
     default: 'x64'
   distribution:
     description: 'The target distribution (minimal, full) of Racket.'
     default: 'full'
   variant:
-    description: 'The target variant (regular, CS) of Racket.'
-    default: 'regular'
+    description: 'The target variant (BC, CS) of Racket.'
+    default: 'BC'
   version:
-    description: 'Version range or exact version of a Racket version to use.'
-    default: '7.7'
+    description: 'Racket version to use.'
+    default: '7.9'
   catalogs:
     description: 'A comma-separated list of package catalogs to use when installing packages.'
     default: ''

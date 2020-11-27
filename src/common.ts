@@ -3,12 +3,14 @@ import * as exec from '@actions/exec';
 import * as tc from '@actions/tool-cache';
 import * as fs from 'fs';
 
-export type Arch = 'x86' | 'x64';
-export type Variant = 'regular' | 'CS';
+export type Arch = 'arm32' | 'arm64' | 'x86' | 'x64';
+export type Variant = 'regular' | 'BC' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
 
 const RACKET_ARCHS: {[key: string]: string} = {
+  'arm32-linux': 'arm',
+  'arm64-linux': 'arm64',
   'x86-darwin': 'i386',
   'x64-darwin': 'x86_64',
   'x86-linux': 'x86_64',
@@ -47,7 +49,7 @@ export function makeInstallerURL(
   if (version === 'current') {
     base = 'https://www.cs.utah.edu/plt/snapshots/current/installers';
     maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
-    if (platform === 'linux') {
+    if (platform === 'linux' && arch != 'arm32' && arch != 'arm64') {
       maybeOS = variant === 'CS' ? '-xenial' : '-precise';
     }
   }
@@ -212,8 +214,10 @@ export function parseArch(s: string): Arch {
 }
 
 export function parseVariant(s: string): Variant {
-  if (s !== 'regular' && s !== 'CS') {
-    throw new Error(`invalid variant '${s}'`);
+  if (s !== 'regular' && s !== 'BC' && s !== 'CS') {
+    throw new Error(
+      `invalid variant '${s}'\n  must be one of: 'regular', 'BC', 'CS'\n  'regular' is just an alias for 'BC'`
+    );
   }
 
   return s;

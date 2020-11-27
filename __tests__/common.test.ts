@@ -107,6 +107,22 @@ describe('makeInstallerURL', () => {
       [
         ['current', 'x64', 'minimal', 'CS', 'win32'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-cs.exe'
+      ],
+      [
+        ['current', 'arm32', 'full', 'CS', 'linux'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-arm-linux-cs.sh'
+      ],
+      [
+        ['current', 'arm32', 'minimal', 'CS', 'linux'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-cs.sh'
+      ],
+      [
+        ['current', 'arm32', 'full', 'BC', 'linux'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-arm-linux-bc.sh'
+      ],
+      [
+        ['current', 'arm32', 'minimal', 'BC', 'linux'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-bc.sh'
       ]
     ];
 
