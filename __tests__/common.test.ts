@@ -1,5 +1,12 @@
 import * as common from '../src/common';
 
+describe('fetchStableVersion', () => {
+  it('gets the current stable version from racket-lang.org', async () => {
+    const version = Number(await common.lookupStableVersion());
+    expect(version).toBeGreaterThan(7.8);
+  });
+});
+
 describe('makeInstallerURL', () => {
   it('generates valid installer URLs', async () => {
     const tests: [

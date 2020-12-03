@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as tc from '@actions/tool-cache';
+import * as http from 'http';
 import * as fs from 'fs';
 
 export type Arch = 'arm32' | 'arm64' | 'x86' | 'x64';
@@ -229,4 +230,30 @@ export function parseDistribution(s: string): Distribution {
   }
 
   return s;
+}
+
+// ((recent "7.9") (stable "7.9"))
+const versionRe = /\(stable "([^"]+)"\)/;
+
+export function lookupStableVersion(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    http.get('http://download.racket-lang.org/version.txt', res => {
+      const {statusCode} = res;
+      if (statusCode !== 200) {
+        reject(new Error(`request failed with status code ${statusCode}`));
+        return;
+      }
+
+      let data = '';
+      res.on('data', chunk => (data += chunk));
+      res.on('end', () => {
+        const res = versionRe.exec(data);
+        if (res == null) {
+          reject(new Error(`failed to parse version from data: ${data}`));
+          return;
+        }
+        resolve(res[1]);
+      });
+    });
+  });
 }
