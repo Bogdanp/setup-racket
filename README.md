@@ -18,10 +18,10 @@ steps:
 - uses: actions/checkout@master
 - uses: Bogdanp/setup-racket@v0.12
   with:
-    architecture: 'x64'   # or: 'x64', 'x86', 'arm32', 'arm64'
-    distribution: 'full'  # or: 'minimal'
-    variant: 'CS'         # or: 'BC' for Racket Before Chez
-    version: '7.9'        # or: 'stable' for the latest version, 'current' for the latest snapshot
+    architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64'
+    distribution: 'full' # or: 'minimal'
+    variant: 'CS'        # or: 'BC' for Racket Before Chez
+    version: '7.9'       # or: 'stable' for the latest version, 'current' for the latest snapshot
 - run: racket hello.rkt
 ```
 
@@ -36,7 +36,7 @@ steps:
     distribution: 'full'
     variant: 'CS'
     version: '7.9'
-    packages: 'component, koyo'  # must be a comma-separated string!
+    packages: 'component, koyo' # must be a comma-separated string!
 - run: racket hello.rkt
 ```
 
@@ -51,7 +51,7 @@ steps:
     distribution: 'full'
     variant: 'CS'
     version: '7.9'
-    dest: '/opt/racket'          # ignored on macOS and Windows
+    dest: '/opt/racket' # ignored on macOS and Windows
 - run: racket hello.rkt
 ```
 
