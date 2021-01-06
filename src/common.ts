@@ -200,9 +200,7 @@ export async function setCatalogs(catalogs: string[]) {
 export async function installPackages(packages: string[]) {
   await exec.exec(
     'raco',
-    ['pkg', 'install', '--auto', '--batch', '--no-docs', '--fail-fast'].concat(
-      packages
-    )
+    ['pkg', 'install', '--auto', '--batch', '--fail-fast'].concat(packages)
   );
 }
 
