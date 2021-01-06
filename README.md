@@ -16,7 +16,7 @@ Basic:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v0.12
+- uses: Bogdanp/setup-racket@v0.12.1
   with:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64'
     distribution: 'full' # or: 'minimal'
@@ -30,7 +30,7 @@ Package installation:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v0.12
+- uses: Bogdanp/setup-racket@v0.12.1
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -45,7 +45,7 @@ Custom location (only on Linux):
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v0.12
+- uses: Bogdanp/setup-racket@v0.12.1
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -68,7 +68,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v0.12
+        uses: Bogdanp/setup-racket@v0.12.1
         with:
           architecture: x64
           version: ${{ matrix.racket-version }}
