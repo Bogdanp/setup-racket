@@ -70,6 +70,7 @@ jobs:
     container: debian:buster-slim
     steps:
     - uses: actions/checkout@v1
+    - run: apt-get update && apt-get install --no-install-recommends -y sqlite
     - uses: Bogdanp/setup-racket@master
       with:
         architecture: 'x64'
