@@ -18,7 +18,7 @@ steps:
 - uses: actions/checkout@master
 - uses: Bogdanp/setup-racket@v0.12.1
   with:
-    architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64'
+    architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
     distribution: 'full' # or: 'minimal'
     variant: 'CS'        # or: 'BC' for Racket Before Chez
     version: '7.9'       # or: 'stable' for the latest version, 'current' for the latest snapshot
@@ -82,6 +82,9 @@ Installers for `x86` are not available on Linux.
 Installers for `arm32` are only currently available when the `version`
 is `current` and `arm64` installers are currently not available at
 all.
+
+Installers for Apple Silicon Macs are available when the version is
+`current` and the arch is either `arm64` or `aarch64`.
 
 
 ## License
