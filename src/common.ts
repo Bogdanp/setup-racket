@@ -4,14 +4,16 @@ import * as tc from '@actions/tool-cache';
 import * as http from 'http';
 import * as fs from 'fs';
 
-export type Arch = 'arm32' | 'arm64' | 'x86' | 'x64';
+export type Arch = 'aarch64' | 'arm32' | 'arm64' | 'x86' | 'x64';
 export type Variant = 'regular' | 'BC' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
 
 const RACKET_ARCHS: {[key: string]: string} = {
+  'aarch64-darwin': 'aarch64',
   'arm32-linux': 'arm',
   'arm64-linux': 'arm64',
+  'arm64-darwin': 'aarch64',
   'x86-darwin': 'i386',
   'x64-darwin': 'x86_64',
   'x86-linux': 'x86_64',

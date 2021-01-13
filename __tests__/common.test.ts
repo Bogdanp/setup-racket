@@ -130,6 +130,22 @@ describe('makeInstallerURL', () => {
       [
         ['current', 'arm32', 'minimal', 'BC', 'linux'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-bc.sh'
+      ],
+      [
+        ['current', 'aarch64', 'full', 'CS', 'darwin'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'aarch64', 'minimal', 'CS', 'darwin'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'arm64', 'full', 'CS', 'darwin'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'arm64', 'minimal', 'CS', 'darwin'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
       ]
     ];
 
