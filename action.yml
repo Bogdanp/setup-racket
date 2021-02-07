@@ -13,10 +13,10 @@ inputs:
     default: 'full'
   variant:
     description: 'The target variant (BC, CS) of Racket.'
-    default: 'BC'
+    default: 'CS'
   version:
     description: 'Racket version to use.'
-    default: '7.9'
+    required: true
   catalogs:
     description: 'A comma-separated list of package catalogs to use when installing packages.'
     default: ''

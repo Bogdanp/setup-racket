@@ -14,7 +14,7 @@ import * as common from './common';
     const distribution = common.parseDistribution(
       core.getInput('distribution') || 'full'
     );
-    const variant = common.parseVariant(core.getInput('variant') || 'regular');
+    const variant = common.parseVariant(core.getInput('variant') || 'CS');
     const dest = core.getInput('dest');
     const useSudo = common.parseUseSudo(core.getInput('sudo') || '');
     await core.group(
