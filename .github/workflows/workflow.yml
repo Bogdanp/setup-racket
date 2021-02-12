@@ -119,3 +119,54 @@ jobs:
 
     - name: test CS
       run: /opt/racketcs/bin/racket -e '(displayln 42)'
+
+  run_sudo:
+    name: "Install as root and user"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 10.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 10.x
+
+    - name: npm install
+      run: npm install
+
+    - name: npm build
+      run: npm build
+
+    - name: install non-sudo version
+      run: node lib/setup-racket.js
+      env:
+        INPUT_VARIANT: 'CS'
+        INPUT_VERSION: '7.9'
+        INPUT_DEST: '${HOME}/racket-user'
+        INPUT_SUDO: never
+
+    - name: install sudo version
+      run: node lib/setup-racket.js
+      env:
+        INPUT_VARIANT: 'CS'
+        INPUT_VERSION: '7.9'
+        INPUT_DEST: '/opt/racket-root'
+        INPUT_SUDO: always
+
+    - name: test Racket
+      run: |
+        ${HOME}/racket-user/bin/racket -ve- '(displayln 42)'
+        /opt/racket-root/bin/racket -ve- '(displayln 42)'
+
+    - name: test user packages
+      run: '${HOME}/racket-user/bin/raco pkg install -i --skip-installed --no-docs --auto racket-test-core'
+
+    - name: test root packages
+      id: rootpkg
+      run: '/opt/racket-root/bin/raco pkg install -i --skip-installed --no-docs --auto racket-test-core'
+      continue-on-error: true
+
+    - name: check that racket-root is installed as root
+      if: ${{ always() && steps.rootpkg.outcome != 'failure' }}
+      run: exit 1
