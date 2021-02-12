@@ -89,7 +89,10 @@ async function installLinux(path: string, dest: string, useSudo: UseSudo) {
 
   let launchScript = 'sh /tmp/install-racket.impl.sh';
   if (useSudo == 'always') {
-    await fs.promises.writeFile('/tmp/install-racket.sh', `sudo ${launchScript}\n`);
+    await fs.promises.writeFile(
+      '/tmp/install-racket.sh',
+      `sudo ${launchScript}\n`
+    );
   } else if (useSudo == 'never') {
     await fs.promises.writeFile('/tmp/install-racket.sh', `${launchScript}\n`);
   } else {

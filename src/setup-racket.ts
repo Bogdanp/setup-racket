@@ -20,7 +20,14 @@ import * as common from './common';
     await core.group(
       `Installing Racket ${version} (${variant}, ${distribution}, ${arch})...`,
       async () => {
-        return await common.install(version, arch, distribution, variant, dest, useSudo);
+        return await common.install(
+          version,
+          arch,
+          distribution,
+          variant,
+          dest,
+          useSudo
+        );
       }
     );
 
