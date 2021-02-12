@@ -8,6 +8,7 @@ export type Arch = 'aarch64' | 'arm32' | 'arm64' | 'x86' | 'x64';
 export type Variant = 'regular' | 'BC' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
+export type UseSudo = 'always' | 'never' | '';
 
 const RACKET_ARCHS: {[key: string]: string} = {
   'aarch64-darwin': 'aarch64',
@@ -76,7 +77,7 @@ ln -s /Applications/Racket/bin/raco /usr/local/bin/raco
 
 // This detects whether or not sudo is present in case we're in a
 // Docker container.  See issue #2.
-async function installLinux(path: string, dest: string) {
+async function installLinux(path: string, dest: string, useSudo: UseSudo) {
   let script;
   if (dest) {
     script = `sh ${path} --create-dir --in-place --dest ${dest}`;
@@ -85,16 +86,24 @@ async function installLinux(path: string, dest: string) {
   }
 
   await fs.promises.writeFile('/tmp/install-racket.impl.sh', script);
-  await fs.promises.writeFile(
-    '/tmp/install-racket.sh',
-    `
+
+  let launchScript = 'sh /tmp/install-racket.impl.sh';
+  if (useSudo == 'always') {
+    await fs.promises.writeFile('/tmp/install-racket.sh', `sudo ${launchScript}\n`);
+  } else if (useSudo == 'never') {
+    await fs.promises.writeFile('/tmp/install-racket.sh', `${launchScript}\n`);
+  } else {
+    await fs.promises.writeFile(
+      '/tmp/install-racket.sh',
+      `
 if command -v sudo; then
-  sudo sh /tmp/install-racket.impl.sh
+  sudo ${launchScript}
 else
-  sh /tmp/install-racket.impl.sh
+  ${launchScript}
 fi
 `
-  );
+    );
+  }
   await exec.exec('sh', ['/tmp/install-racket.sh']);
 }
 
@@ -168,7 +177,8 @@ export async function install(
   arch: Arch,
   distribution: Distribution,
   variant: Variant,
-  dest: string
+  dest: string,
+  useSudo: UseSudo
 ) {
   const path = await tc.downloadTool(
     makeInstallerURL(
@@ -184,7 +194,7 @@ export async function install(
     case 'darwin':
       return await installDarwin(path);
     case 'linux':
-      return await installLinux(path, dest);
+      return await installLinux(path, dest, useSudo);
     case 'win32':
       return await installWin32(version, arch, path);
     default:
@@ -229,6 +239,13 @@ export function parseDistribution(s: string): Distribution {
     throw new Error(`invalid distribution '${s}'`);
   }
 
+  return s;
+}
+
+export function parseUseSudo(s: string): UseSudo {
+  if (s !== '' && s !== 'always' && s !== 'never') {
+    throw new Error(`invalid sudo '${s}'\n  must be one of: 'always', 'never'`);
+  }
   return s;
 }
 

@@ -55,6 +55,23 @@ steps:
 - run: racket hello.rkt
 ```
 
+Disable sudo (only on Linux; the default is to use `sudo`
+if the command exists):
+
+```yaml
+steps:
+- uses: actions/checkout@master
+- uses: Bogdanp/setup-racket@v0.13
+  with:
+    architecture: 'x64'
+    distribution: 'full'
+    variant: 'CS'
+    version: '8.0'
+    dest: '${HOME}/racket'
+    sudo: never            # one of always or never
+- run: ${HOME}/racket/bin/racket hello.rkt
+```
+
 Matrix Testing:
 
 ```yaml

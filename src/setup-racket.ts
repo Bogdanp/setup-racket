@@ -16,10 +16,11 @@ import * as common from './common';
     );
     const variant = common.parseVariant(core.getInput('variant') || 'regular');
     const dest = core.getInput('dest');
+    const useSudo = common.parseUseSudo(core.getInput('sudo') || '');
     await core.group(
       `Installing Racket ${version} (${variant}, ${distribution}, ${arch})...`,
       async () => {
-        return await common.install(version, arch, distribution, variant, dest);
+        return await common.install(version, arch, distribution, variant, dest, useSudo);
       }
     );
 

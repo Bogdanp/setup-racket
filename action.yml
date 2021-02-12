@@ -23,6 +23,12 @@ inputs:
   packages:
     description: 'A comma-separated list of packages to install from the Package Catalog.'
     default: ''
+  dest:
+    description: 'Installation destination. Linux only.'
+    default: ''
+  sudo:
+    description: 'Use sudo or not (always, never).'
+    default: ''
 runs:
   using: 'node12'
   main: 'lib/setup-racket.js'
