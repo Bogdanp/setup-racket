@@ -184,7 +184,7 @@ jobs:
       run: |
         /opt/racket/bin/racket -ve- '(displayln 42)'
 
-    - name: test package installation
+    - name: test package installation as user
       run: |
         if ! /opt/racket/bin/raco pkg install -i --skip-installed --no-docs --auto racket-test-core; then
           echo "XFAIL"
@@ -192,3 +192,7 @@ jobs:
           echo "Non-root package installation should have failed."
           exit 1
         fi
+
+    - name: test package installation as root
+      run: |
+        sudo /opt/racket/bin/raco pkg install -i --skip-installed --no-docs --auto racket-test-core
