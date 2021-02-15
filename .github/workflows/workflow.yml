@@ -49,6 +49,45 @@ jobs:
     - name: test package installation
       run: raco pkg install nevermore
 
+  default_variant:
+    name: "Build Racket ${{ matrix.racket-version }} using the default variant"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        racket-version: ["6.9", "stable"]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 10.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 10.x
+
+    - name: npm install
+      run: npm install
+
+    - name: Lint
+      run: npm run format-check
+
+    - name: npm test
+      run: npm test
+
+    - name: npm build
+      run: npm build
+
+    - name: run
+      run: node lib/setup-racket.js
+      env:
+        INPUT_VERSION: ${{ matrix.racket-version }}
+
+    - name: test racket
+      run: racket -e '(displayln 42)'
+
+    - name: test package installation
+      run: raco pkg install nevermore
+
   run_docker:
     name: "Build in Docker"
     runs-on: ubuntu-latest

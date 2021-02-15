@@ -14,7 +14,13 @@ import * as common from './common';
     const distribution = common.parseDistribution(
       core.getInput('distribution') || 'full'
     );
-    const variant = common.parseVariant(core.getInput('variant') || 'CS');
+
+    let variantInput = core.getInput('variant');
+    if (variantInput === '') {
+      variantInput = Number(version) >= 8.0 ? 'CS' : 'BC';
+    }
+
+    const variant = common.parseVariant(variantInput);
     const dest = core.getInput('dest');
     const useSudo = common.parseUseSudo(core.getInput('sudo') || '');
     await core.group(

@@ -12,8 +12,8 @@ inputs:
     description: 'The target distribution (minimal, full) of Racket.'
     default: 'full'
   variant:
-    description: 'The target variant (BC, CS) of Racket.'
-    default: 'CS'
+    description: 'The target variant (BC, CS) of Racket. Defaults to CS if the version is >= 8.0, otherwise BC.'
+    default: ''
   version:
     description: 'Racket version to use.'
     required: true

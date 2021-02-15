@@ -183,15 +183,16 @@ export async function install(
   dest: string,
   useSudo: UseSudo
 ) {
-  const path = await tc.downloadTool(
-    makeInstallerURL(
-      version,
-      arch,
-      distribution,
-      variant,
-      process.platform as Platform
-    )
+  const url = makeInstallerURL(
+    version,
+    arch,
+    distribution,
+    variant,
+    process.platform as Platform
   );
+  core.info(`installerURL = ${url}`);
+
+  const path = await tc.downloadTool(url);
 
   switch (process.platform as Platform) {
     case 'darwin':
