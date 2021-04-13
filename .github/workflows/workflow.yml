@@ -24,6 +24,12 @@ jobs:
       with:
         node-version: 10.x
 
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
     - name: npm install
       run: npm install
 
