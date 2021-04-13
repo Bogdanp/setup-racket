@@ -98,6 +98,27 @@ jobs:
       - run: racket hello.rkt
 ```
 
+Create and prepend a local package catalog:
+
+```yaml
+steps:
+- uses: actions/checkout@master
+- uses: Bogdanp/setup-racket@v1.1
+  with:
+    architecture: 'x64'
+    distribution: 'minimal'
+    variant: 'CS'
+    version: '8.0'
+    dest: '/opt/racket'
+    sudo: never
+    local_catalogs: $GITHUB_WORKSPACE
+```
+
+This sets up a local package catalog at `$GITHUB_WORKSPACE/catalog`
+that has higher priority than the catalogs that come with each Racket
+distribution.  This can come in handy when testing libraries that are
+a part of the Racket distribution.
+
 ## Gotchas
 
 Installers for `x86` are not available on Linux.

@@ -3,6 +3,7 @@ import * as exec from '@actions/exec';
 import * as tc from '@actions/tool-cache';
 import * as http from 'http';
 import * as fs from 'fs';
+import * as path from 'path';
 
 export type Arch = 'aarch64' | 'arm32' | 'arm64' | 'x86' | 'x64';
 export type Variant = 'regular' | 'BC' | 'CS';
@@ -206,11 +207,41 @@ export async function install(
   }
 }
 
+export async function addLocalCatalog(p: string) {
+  const expandedPath = await expandPath(p);
+  const catalog = path.join(expandedPath, 'catalog');
+  await exec.exec('racket', [
+    '-l-',
+    'pkg/dirs-catalog',
+    '--link',
+    catalog,
+    expandedPath
+  ]);
+  await prependCatalog(`file://${catalog}`);
+}
+
+export async function getCatalogs(): Promise<string[]> {
+  let output = '';
+  await exec.exec('raco', ['pkg', 'config', 'catalogs'], {
+    listeners: {
+      stdout: (data: Buffer) => {
+        output += data.toString();
+      }
+    }
+  });
+  return output.split('\n');
+}
+
 export async function setCatalogs(catalogs: string[]) {
   await exec.exec(
     'raco',
     ['pkg', 'config', '--set', 'catalogs'].concat(catalogs)
   );
+}
+
+export async function prependCatalog(catalog: string) {
+  const catalogs = await getCatalogs();
+  await setCatalogs([catalog].concat(catalogs));
 }
 
 export async function installPackages(packages: string[]) {

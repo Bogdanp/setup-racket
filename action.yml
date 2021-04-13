@@ -20,6 +20,9 @@ inputs:
   catalogs:
     description: 'A comma-separated list of package catalogs to use when installing packages.'
     default: ''
+  local_catalogs:
+    description: 'A comma-separated list of paths to create local catalogs in.'
+    default: ''
   packages:
     description: 'A comma-separated list of packages to install from the Package Catalog.'
     default: ''

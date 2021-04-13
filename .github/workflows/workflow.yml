@@ -138,6 +138,12 @@ jobs:
       with:
         node-version: 10.x
 
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
     - name: npm install
       run: npm install
 
@@ -180,6 +186,12 @@ jobs:
       with:
         node-version: 10.x
 
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
     - name: npm install
       run: npm install
 
@@ -218,6 +230,12 @@ jobs:
       with:
         node-version: 10.x
 
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
     - name: npm install
       run: npm install
 
@@ -252,3 +270,46 @@ jobs:
     - name: test "default" racket
       run: |
         racket --version | grep cs
+
+  local_catalogs:
+    name: "Install with local catalog"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 10.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 10.x
+
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+    - name: npm install
+      run: npm install
+
+    - name: npm build
+      run: npm build
+
+    - name: make a dummy package
+      run: cp -r .github/artifacts/pkgs pkgs
+
+    - name: install Racket as root
+      run: node lib/setup-racket.js
+      env:
+        INPUT_VARIANT: 'CS'
+        INPUT_VERSION: '8.0'
+        INPUT_DISTRIBUTION: 'minimal'
+        INPUT_DEST: '/opt/racket'
+        INPUT_SUDO: never
+        INPUT_LOCAL_CATALOGS: $GITHUB_WORKSPACE/pkgs
+
+    - name: install dummy pkg from local catalog
+      run: raco pkg install --batch --auto dummy
+
+    - name: call dummy pkg
+      run: racket -ve '(require dummy)(displayln (hello))'

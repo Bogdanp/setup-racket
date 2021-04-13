@@ -44,6 +44,24 @@ import * as common from './common';
       });
     }
 
+    const localCatalogs = core.getInput('local_catalogs', {required: false});
+    if (localCatalogs.trim() !== '') {
+      const paths = localCatalogs.split(',');
+      for (const path of paths) {
+        await core.group(
+          `Setting up local catalog for path '${path}'...`,
+          async () => {
+            await common.addLocalCatalog(path);
+          }
+        );
+      }
+      await core.group('Listing catalogs...', async () => {
+        for (const path of await common.getCatalogs()) {
+          core.info(path);
+        }
+      });
+    }
+
     const catalogs = core.getInput('catalogs', {required: false});
     if (catalogs.trim() !== '') {
       await core.group('Setting up package catalogs...', async () => {
