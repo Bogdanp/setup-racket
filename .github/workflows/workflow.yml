@@ -158,6 +158,10 @@ jobs:
     - name: test CS
       run: /opt/racketcs/bin/racket -e '(displayln 42)'
 
+    - name: test "default" racket
+      run: |
+        racket --version | grep cs
+
   run_sudo_never:
     name: "Install as user"
     runs-on: ubuntu-latest
@@ -191,6 +195,10 @@ jobs:
     - name: test package installation
       run: |
         ${HOME}/racket/bin/raco pkg install -i --skip-installed --no-docs --auto racket-test-core
+
+    - name: test "default" racket
+      run: |
+        racket --version | grep cs
 
   run_sudo_always:
     name: "Install as root"
@@ -234,3 +242,7 @@ jobs:
     - name: test package installation as root
       run: |
         sudo /opt/racket/bin/raco pkg install -i --skip-installed --no-docs --auto racket-test-core
+
+    - name: test "default" racket
+      run: |
+        racket --version | grep cs

@@ -55,6 +55,12 @@ steps:
 - run: racket hello.rkt
 ```
 
+When `dest` is provided, the destination installation's `bin` folder
+is prepended to the `PATH`.  When you install multiple Racket versions
+to separate destinations, the last one you install will be the one
+that's found in the `PATH` when you invoke `racket` from a shell
+(unless you use an absolute path).
+
 Disable sudo (only on Linux; the default is to use `sudo`
 if the command exists):
 

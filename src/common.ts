@@ -278,3 +278,17 @@ export function lookupStableVersion(): Promise<string> {
     });
   });
 }
+
+export async function expandPath(p: string): Promise<string> {
+  let path = '';
+  const scriptFilename = `/tmp/expand-path-${new Date().getTime()}.sh`;
+  await fs.promises.writeFile(scriptFilename, `echo "${p}"`);
+  await exec.exec('sh', [scriptFilename], {
+    listeners: {
+      stdout: (data: Buffer) => {
+        path += data.toString();
+      }
+    }
+  });
+  return path.trim();
+}

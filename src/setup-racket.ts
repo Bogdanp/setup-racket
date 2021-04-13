@@ -37,6 +37,12 @@ import * as common from './common';
         );
       }
     );
+    if (dest) {
+      const expandedPath = await common.expandPath(`${dest}/bin`);
+      await core.group(`Adding '${expandedPath}' to PATH...`, async () => {
+        core.addPath(expandedPath);
+      });
+    }
 
     const catalogs = core.getInput('catalogs', {required: false});
     if (catalogs.trim() !== '') {
