@@ -38,8 +38,8 @@ import * as common from './common';
       }
     );
     if (dest) {
-      const expandedPath = await common.expandPath(`${dest}/bin`);
-      await core.group(`Adding '${expandedPath}' to PATH...`, async () => {
+      await core.group(`Adding '${dest}/bin' to PATH...`, async () => {
+        const expandedPath = await common.expandPath(`${dest}/bin`);
         core.addPath(expandedPath);
       });
     }
