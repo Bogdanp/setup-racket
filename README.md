@@ -73,9 +73,9 @@ steps:
     distribution: 'full'
     variant: 'CS'
     version: '8.0'
-    dest: '${HOME}/racket'
+    dest: '$GITHUB_WORKSPACE/racket'
     sudo: never            # one of always or never
-- run: ${HOME}/racket/bin/racket hello.rkt
+- run: "$GITHUB_WORKSPACE/racket/bin/racket" hello.rkt
 ```
 
 ### Matrix Testing
