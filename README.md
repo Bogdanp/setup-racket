@@ -115,9 +115,9 @@ steps:
 ```
 
 This sets up a local package catalog at `$GITHUB_WORKSPACE/catalog`
-that has higher priority than the catalogs that come with each Racket
+that has higher priority than the catalogs that come with the Racket
 distribution.  This can come in handy when testing libraries that are
-a part of the Racket distribution.
+a part of the main Racket distribution.
 
 ## Gotchas
 
