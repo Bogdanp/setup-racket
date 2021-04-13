@@ -11,7 +11,7 @@ This action sets up a Racket environment for use in GitHub Actions.
 See [action.yml](action.yml) and [this article][article] for a
 tutorial on how to use it.
 
-Basic:
+### Basic
 
 ```yaml
 steps:
@@ -25,7 +25,7 @@ steps:
 - run: racket hello.rkt
 ```
 
-Package installation:
+### Package Installation
 
 ```yaml
 steps:
@@ -40,7 +40,7 @@ steps:
 - run: racket hello.rkt
 ```
 
-Custom location (only on Linux):
+### Custom Locations (only on Linux)
 
 ```yaml
 steps:
@@ -78,7 +78,7 @@ steps:
 - run: ${HOME}/racket/bin/racket hello.rkt
 ```
 
-Matrix Testing:
+### Matrix Testing
 
 ```yaml
 jobs:
@@ -98,7 +98,7 @@ jobs:
       - run: racket hello.rkt
 ```
 
-Create and prepend a local package catalog:
+### Local Package Catalogs
 
 ```yaml
 steps:
@@ -118,6 +118,7 @@ This sets up a local package catalog at `$GITHUB_WORKSPACE/catalog`
 that has higher priority than the catalogs that come with the Racket
 distribution.  This can come in handy when testing libraries that are
 a part of the main Racket distribution.
+
 
 ## Gotchas
 
