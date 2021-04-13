@@ -119,6 +119,10 @@ that has higher priority than the catalogs that come with the Racket
 distribution.  This can come in handy when testing libraries that are
 a part of the main Racket distribution.
 
+You can provide multiple local catalog paths by separating them with
+commas.  They are prepended to the catalog set in order so the last
+local catalog in the list will have the highest priority.
+
 
 ## Gotchas
 
