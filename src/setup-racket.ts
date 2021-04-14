@@ -47,7 +47,7 @@ import * as common from './common';
     const localCatalogs = core.getInput('local_catalogs', {required: false});
     if (localCatalogs.trim() !== '') {
       const paths = localCatalogs.split(',');
-      for (const path of paths) {
+      for (const path of paths.reverse()) {
         await core.group(
           `Setting up local catalog for path '${path}'...`,
           async () => {
