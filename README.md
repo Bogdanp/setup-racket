@@ -16,7 +16,7 @@ tutorial on how to use it.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.2.1
+- uses: Bogdanp/setup-racket@v1.3
   with:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
     distribution: 'full' # or: 'minimal'
@@ -30,7 +30,7 @@ steps:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.2.1
+- uses: Bogdanp/setup-racket@v1.3
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -45,7 +45,7 @@ steps:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.2.1
+- uses: Bogdanp/setup-racket@v1.3
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -67,7 +67,7 @@ if the command exists):
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.2.1
+- uses: Bogdanp/setup-racket@v1.3
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -91,7 +91,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v1.2.1
+        uses: Bogdanp/setup-racket@v1.3
         with:
           architecture: x64
           version: ${{ matrix.racket-version }}
@@ -103,7 +103,7 @@ jobs:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.2.1
+- uses: Bogdanp/setup-racket@v1.3
   with:
     architecture: 'x64'
     distribution: 'minimal'
