@@ -89,7 +89,7 @@ jobs:
     container: debian:buster-slim
     steps:
     - uses: actions/checkout@v1
-    - uses: Bogdanp/setup-racket@bundle
+    - uses: Bogdanp/setup-racket@master
       with:
         architecture: 'x64'
         distribution: 'full'
@@ -105,7 +105,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: apt-get update && apt-get install --no-install-recommends -y sqlite3
-    - uses: Bogdanp/setup-racket@bundle
+    - uses: Bogdanp/setup-racket@master
       with:
         architecture: 'x64'
         distribution: 'full'
