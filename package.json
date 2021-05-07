@@ -5,7 +5,7 @@
   "description": "Setup Racket action",
   "main": "lib/setup-racket.js",
   "scripts": {
-    "build": "tsc",
+    "build": "rollup src/setup-racket.ts --file lib/setup-racket.js --format cjs -p '@rollup/plugin-node-resolve' -p '@rollup/plugin-commonjs' -p '@rollup/plugin-typescript'",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "test": "jest"
@@ -29,14 +29,18 @@
   },
   "devDependencies": {
     "@actions/io": "^1.0.0",
+    "@rollup/plugin-commonjs": "^18.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@rollup/plugin-typescript": "^8.2.1",
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.4",
     "@types/semver": "^6.0.0",
     "jest": "^24.8.0",
     "jest-circus": "^24.7.1",
     "prettier": "^1.17.1",
+    "rollup": "^2.47.0",
     "ts-jest": "^24.0.2",
     "tslint": "^5.20.0",
-    "typescript": "^3.5.1"
+    "typescript": "^3.9.9"
   }
 }

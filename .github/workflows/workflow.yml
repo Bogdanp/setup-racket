@@ -13,16 +13,16 @@ jobs:
       fail-fast: false
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-        racket-version: ["7.9", "8.0", "stable", "current"]
+        racket-version: ["8.0", "8.1", "stable", "current"]
         racket-variant: ["BC", "CS"]
     steps:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Set Node.js 10.x
+    - name: Set Node.js 12.x
       uses: actions/setup-node@master
       with:
-        node-version: 10.x
+        node-version: 12.x
 
     - name: Cache node_modules
       uses: actions/cache@v2
@@ -36,11 +36,8 @@ jobs:
     - name: Lint
       run: npm run format-check
 
-    - name: npm test
-      run: npm test
-
-    - name: npm build
-      run: npm build
+    - run: npm test
+    - run: npm run build
 
     - name: run
       run: node lib/setup-racket.js
@@ -65,22 +62,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Set Node.js 10.x
+    - name: Set Node.js 12.x
       uses: actions/setup-node@master
       with:
-        node-version: 10.x
+        node-version: 12.x
 
-    - name: npm install
-      run: npm install
-
-    - name: Lint
-      run: npm run format-check
-
-    - name: npm test
-      run: npm test
-
-    - name: npm build
-      run: npm build
+    - run: npm install
+    - run: npm run format-check
+    - run: npm test
+    - run: npm run build
 
     - name: run
       run: node lib/setup-racket.js
@@ -99,7 +89,7 @@ jobs:
     container: debian:buster-slim
     steps:
     - uses: actions/checkout@v1
-    - uses: Bogdanp/setup-racket@master
+    - uses: Bogdanp/setup-racket@bundle
       with:
         architecture: 'x64'
         distribution: 'full'
@@ -115,7 +105,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: apt-get update && apt-get install --no-install-recommends -y sqlite3
-    - uses: Bogdanp/setup-racket@master
+    - uses: Bogdanp/setup-racket@bundle
       with:
         architecture: 'x64'
         distribution: 'full'
@@ -133,10 +123,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Set Node.js 10.x
+    - name: Set Node.js 12.x
       uses: actions/setup-node@master
       with:
-        node-version: 10.x
+        node-version: 12.x
 
     - name: Cache node_modules
       uses: actions/cache@v2
@@ -144,11 +134,8 @@ jobs:
         path: node_modules
         key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
-    - name: npm install
-      run: npm install
-
-    - name: npm build
-      run: npm build
+    - run: npm install
+    - run: npm run build
 
     - name: install BC
       run: node lib/setup-racket.js
@@ -181,10 +168,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Set Node.js 10.x
+    - name: Set Node.js 12.x
       uses: actions/setup-node@master
       with:
-        node-version: 10.x
+        node-version: 12.x
 
     - name: Cache node_modules
       uses: actions/cache@v2
@@ -192,11 +179,8 @@ jobs:
         path: node_modules
         key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
-    - name: npm install
-      run: npm install
-
-    - name: npm build
-      run: npm build
+    - run: npm install
+    - run: npm run build
 
     - name: install Racket as user
       run: node lib/setup-racket.js
@@ -225,10 +209,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Set Node.js 10.x
+    - name: Set Node.js 12.x
       uses: actions/setup-node@master
       with:
-        node-version: 10.x
+        node-version: 12.x
 
     - name: Cache node_modules
       uses: actions/cache@v2
@@ -236,11 +220,8 @@ jobs:
         path: node_modules
         key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
-    - name: npm install
-      run: npm install
-
-    - name: npm build
-      run: npm build
+    - run: npm install
+    - run: npm run build
 
     - name: install Racket as root
       run: node lib/setup-racket.js
@@ -278,10 +259,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Set Node.js 10.x
+    - name: Set Node.js 12.x
       uses: actions/setup-node@master
       with:
-        node-version: 10.x
+        node-version: 12.x
 
     - name: Cache node_modules
       uses: actions/cache@v2
@@ -289,11 +270,8 @@ jobs:
         path: node_modules
         key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
-    - name: npm install
-      run: npm install
-
-    - name: npm build
-      run: npm build
+    - run: npm install
+    - run: npm run build
 
     - name: make a dummy package
       run: cp -r .github/artifacts/pkgs pkgs
