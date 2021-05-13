@@ -61,8 +61,9 @@ to separate destinations, the last one you install will be the one
 that's found in the `PATH` when you invoke `racket` from a shell
 (unless you use an absolute path).
 
-Disable sudo (only on Linux; the default is to use `sudo`
-if the command exists):
+### Disable sudo
+
+Only on Linux. The default is to use `sudo` if the command exists.
 
 ```yaml
 steps:
