@@ -65,7 +65,9 @@ import * as common from './common';
     const catalogs = core.getInput('catalogs', {required: false});
     if (catalogs.trim() !== '') {
       await core.group('Setting up package catalogs...', async () => {
-        return await common.setCatalogs(catalogs.split(',').map(c => c.trim()));
+        return await common.setCatalogs(
+          catalogs.split(',').map((c: string) => c.trim())
+        );
       });
     }
 
@@ -73,7 +75,7 @@ import * as common from './common';
     if (packages.trim() !== '') {
       await core.group('Installing packages...', async () => {
         return await common.installPackages(
-          packages.split(',').map(p => p.trim())
+          packages.split(',').map((p: string) => p.trim())
         );
       });
     }

@@ -207,22 +207,25 @@ export async function install(
   }
 }
 
+async function racket(...args: string[]): Promise<number> {
+  return await exec.exec('racket', args);
+}
+
+async function raco(...args: string[]): Promise<number> {
+  return await exec.exec('raco', args);
+}
+
 export async function addLocalCatalog(p: string) {
   const expandedPath = await expandPath(p);
   const catalog = path.join(expandedPath, 'catalog');
-  await exec.exec('racket', [
-    '-l-',
-    'pkg/dirs-catalog',
-    '--link',
-    catalog,
-    expandedPath
-  ]);
+  await racket('-l-', 'pkg/dirs-catalog', '--link', catalog, expandedPath);
   await prependCatalog(`file://${catalog}`);
 }
 
 export async function getCatalogs(): Promise<string[]> {
   let output = '';
   await exec.exec('raco', ['pkg', 'config', 'catalogs'], {
+    silent: true,
     listeners: {
       stdout: (data: Buffer) => {
         output += data.toString();
@@ -233,10 +236,8 @@ export async function getCatalogs(): Promise<string[]> {
 }
 
 export async function setCatalogs(catalogs: string[]) {
-  await exec.exec(
-    'raco',
-    ['pkg', 'config', '--set', 'catalogs'].concat(catalogs)
-  );
+  await raco('pkg', 'config', '-u', '--set', 'catalogs', ...catalogs);
+  await raco('pkg', 'config', '-i', '--set', 'catalogs', ...catalogs);
 }
 
 export async function prependCatalog(catalog: string) {
@@ -245,10 +246,7 @@ export async function prependCatalog(catalog: string) {
 }
 
 export async function installPackages(packages: string[]) {
-  await exec.exec(
-    'raco',
-    ['pkg', 'install', '--auto', '--batch', '--fail-fast'].concat(packages)
-  );
+  await raco('pkg', 'install', '--auto', '--batch', '--fail-fast', ...packages);
 }
 
 export function parseArch(s: string): Arch {
