@@ -16,7 +16,7 @@ tutorial on how to use it.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.3.1
+- uses: Bogdanp/setup-racket@v1.4
   with:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
     distribution: 'full' # or: 'minimal'
@@ -30,7 +30,7 @@ steps:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.3.1
+- uses: Bogdanp/setup-racket@v1.4
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -45,7 +45,7 @@ steps:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.3.1
+- uses: Bogdanp/setup-racket@v1.4
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -68,14 +68,14 @@ Only on Linux. The default is to use `sudo` if the command exists.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.3.1
+- uses: Bogdanp/setup-racket@v1.4
   with:
     architecture: 'x64'
     distribution: 'full'
     variant: 'CS'
     version: '8.1'
     dest: '$GITHUB_WORKSPACE/racket'
-    sudo: never            # one of always or never
+    sudo: never # one of always or never
 - run: "$GITHUB_WORKSPACE/racket/bin/racket" hello.rkt
 ```
 
@@ -92,7 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v1.3.1
+        uses: Bogdanp/setup-racket@v1.4
         with:
           architecture: x64
           version: ${{ matrix.racket-version }}
@@ -104,7 +104,7 @@ jobs:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.3.1
+- uses: Bogdanp/setup-racket@v1.4
   with:
     architecture: 'x64'
     distribution: 'minimal'
