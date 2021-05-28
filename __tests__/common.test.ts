@@ -7,6 +7,42 @@ describe('fetchStableVersion', () => {
   });
 });
 
+describe('parseVersion', () => {
+  it('parses "current" to itself', () => {
+    expect(common.parseVersion('current')).toEqual('current');
+  });
+
+  it('parses version strings to numbers', () => {
+    const tests: [string, number][] = [
+      ['5.0', 50000000000],
+      ['5.0.1', 50000010000],
+      ['5.0.2', 50000020000],
+      ['5.92', 50920000000],
+      ['6.0.1', 60000010000],
+      ['6.0.1.9999', 60000019999]
+    ];
+    for (const [s, expected] of tests) {
+      expect(common.parseVersion(s)).toEqual(expected);
+    }
+  });
+});
+
+describe('cmpVersions', () => {
+  it('compares versions', () => {
+    const tests: [string, string, number][] = [
+      ['current', 'current', 0],
+      ['current', '6.5', 1],
+      ['6.5', 'current', -1],
+      ['6.5', '7.3', -1],
+      ['10.9', '6.5', 1],
+      ['6.5', '6.5', 0]
+    ];
+    for (const [a, b, expected] of tests) {
+      expect(common.cmpVersions(a, b)).toEqual(expected);
+    }
+  });
+});
+
 describe('makeInstallerURL', () => {
   it('generates valid installer URLs', async () => {
     const tests: [

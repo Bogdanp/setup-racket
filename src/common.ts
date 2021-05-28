@@ -321,3 +321,39 @@ export async function expandPath(p: string): Promise<string> {
   });
   return path.trim();
 }
+
+export function parseVersion(v: string): 'current' | number {
+  switch (v) {
+    case 'current':
+      return v;
+    default:
+      const [major, minor, patch, build] = v.split('.');
+      return (
+        Number(major || '0') * Math.pow(10, 10) +
+        Number(minor || '0') * Math.pow(10, 7) +
+        Number(patch || '0') * Math.pow(10, 4) +
+        Number(build || '0')
+      );
+  }
+}
+
+export function cmpVersions(thisStr: string, otherStr: string): -1 | 0 | 1 {
+  const thisVer = parseVersion(thisStr);
+  const otherVer = parseVersion(otherStr);
+  if (thisVer === 'current') {
+    if (otherVer === 'current') {
+      return 0;
+    }
+    return 1;
+  } else if (otherVer === 'current') {
+    return -1;
+  }
+
+  if (thisVer === otherVer) {
+    return 0;
+  } else if (thisVer > otherVer) {
+    return 1;
+  } else {
+    return -1;
+  }
+}

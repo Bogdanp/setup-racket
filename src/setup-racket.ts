@@ -22,6 +22,19 @@ import * as common from './common';
     }
 
     const variant = common.parseVariant(variantInput);
+
+    if (common.cmpVersions(version, '6.5') === -1) {
+      core.setFailed(
+        `Versions prior to 6.5 are not supported. You've requested version '${version}'.`
+      );
+      return;
+    } else if (variant === 'CS' && common.cmpVersions(version, '7.4') === -1) {
+      core.setFailed(
+        `Racket CS was first released in version 7.4. You've requested version '${version}'.`
+      );
+      return;
+    }
+
     const dest = core.getInput('dest');
     const useSudo = common.parseUseSudo(core.getInput('sudo') || '');
     await core.group(

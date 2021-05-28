@@ -291,3 +291,69 @@ jobs:
 
     - name: call dummy pkg
       run: racket -ve '(require dummy)(displayln (hello))'
+
+  unsupported_bc_version:
+    name: "Install unsupported BC version"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 12.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+    - run: npm install
+    - run: npm run build
+
+    - name: install an unsupported version of Racket BC
+      run: |
+        if ! node lib/setup-racket.js; then
+          echo "XFAIL"
+        else
+          echo "Should have failed to install version $INPUT_VERSION $INPUT_VARIANT."
+          exit 1
+        fi
+      env:
+        INPUT_VARIANT: 'BC'
+        INPUT_VERSION: '6.4'
+
+  unsupported_cs_version:
+    name: "Install unsupported CS version"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 12.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+    - run: npm install
+    - run: npm run build
+
+    - name: install an unsupported version of Racket CS
+      run: |
+        if ! node lib/setup-racket.js; then
+          echo "XFAIL"
+        else
+          echo "Should have failed to install version $INPUT_VERSION $INPUT_VARIANT."
+          exit 1
+        fi
+      env:
+        INPUT_VARIANT: 'CS'
+        INPUT_VERSION: '7.3'
