@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 export type Arch = 'aarch64' | 'arm32' | 'arm64' | 'x86' | 'x64';
-export type Variant = 'regular' | 'BC' | 'CS';
+export type Variant = 'BC' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
 export type UseSudo = 'always' | 'never' | '';
@@ -36,6 +36,10 @@ const RACKET_EXTS: {[key: string]: string} = {
   win32: 'exe'
 };
 
+function isRacketBC(variant: Variant): boolean {
+  return variant === 'BC';
+}
+
 export function makeInstallerURL(
   version: string,
   arch: Arch,
@@ -50,7 +54,14 @@ export function makeInstallerURL(
   let base = `https://download.racket-lang.org/installers/${version}`;
   const prefix = distribution === 'minimal' ? 'racket-minimal' : 'racket';
   let maybeOS = '';
-  let maybeSuffix = variant === 'CS' ? '-cs' : '';
+  let maybeSuffix = '';
+
+  if (isRacketBC(variant) && cmpVersions(version, '8.0') >= 0) {
+    maybeSuffix = '-bc';
+  } else if (variant === 'CS') {
+    maybeSuffix = '-cs';
+  }
+
   if (version === 'current') {
     base = 'https://www.cs.utah.edu/plt/snapshots/current/installers';
     maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
@@ -258,10 +269,8 @@ export function parseArch(s: string): Arch {
 }
 
 export function parseVariant(s: string): Variant {
-  if (s !== 'regular' && s !== 'BC' && s !== 'CS') {
-    throw new Error(
-      `invalid variant '${s}'\n  must be one of: 'regular', 'BC', 'CS'\n  'regular' is just an alias for 'BC'`
-    );
+  if (s !== 'BC' && s !== 'CS') {
+    throw new Error(`invalid variant '${s}'\n  must be either 'BC' or 'CS'`);
   }
 
   return s;

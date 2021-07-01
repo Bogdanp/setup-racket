@@ -56,7 +56,7 @@ describe('makeInstallerURL', () => {
       string
     ][] = [
       [
-        ['7.4', 'x64', 'full', 'regular', 'linux'],
+        ['7.4', 'x64', 'full', 'BC', 'linux'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux.sh'
       ],
       [
@@ -64,7 +64,7 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux-cs.sh'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'regular', 'linux'],
+        ['7.4', 'x64', 'minimal', 'BC', 'linux'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux.sh'
       ],
       [
@@ -72,7 +72,7 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux-cs.sh'
       ],
       [
-        ['7.4', 'x64', 'full', 'regular', 'darwin'],
+        ['7.4', 'x64', 'full', 'BC', 'darwin'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx.dmg'
       ],
       [
@@ -80,7 +80,7 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx-cs.dmg'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'regular', 'darwin'],
+        ['7.4', 'x64', 'minimal', 'BC', 'darwin'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx.dmg'
       ],
       [
@@ -88,7 +88,7 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx-cs.dmg'
       ],
       [
-        ['7.4', 'x64', 'full', 'regular', 'win32'],
+        ['7.4', 'x64', 'full', 'BC', 'win32'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32.exe'
       ],
       [
@@ -96,7 +96,7 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32-cs.exe'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'regular', 'win32'],
+        ['7.4', 'x64', 'minimal', 'BC', 'win32'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32.exe'
       ],
       [
@@ -104,7 +104,15 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32-cs.exe'
       ],
       [
-        ['current', 'x64', 'full', 'regular', 'linux'],
+        ['8.0', 'x64', 'full', 'BC', 'win32'],
+        'https://download.racket-lang.org/installers/8.0/racket-8.0-x86_64-win32-bc.exe'
+      ],
+      [
+        ['8.0', 'x64', 'full', 'CS', 'win32'],
+        'https://download.racket-lang.org/installers/8.0/racket-8.0-x86_64-win32-cs.exe'
+      ],
+      [
+        ['current', 'x64', 'full', 'BC', 'linux'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-precise-bc.sh'
       ],
       [
@@ -112,7 +120,7 @@ describe('makeInstallerURL', () => {
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-xenial-cs.sh'
       ],
       [
-        ['current', 'x64', 'minimal', 'regular', 'linux'],
+        ['current', 'x64', 'minimal', 'BC', 'linux'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-precise-bc.sh'
       ],
       [
@@ -120,7 +128,7 @@ describe('makeInstallerURL', () => {
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-xenial-cs.sh'
       ],
       [
-        ['current', 'x64', 'full', 'regular', 'darwin'],
+        ['current', 'x64', 'full', 'BC', 'darwin'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx-bc.dmg'
       ],
       [
@@ -128,7 +136,7 @@ describe('makeInstallerURL', () => {
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx-cs.dmg'
       ],
       [
-        ['current', 'x64', 'minimal', 'regular', 'darwin'],
+        ['current', 'x64', 'minimal', 'BC', 'darwin'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-bc.dmg'
       ],
       [
@@ -136,7 +144,7 @@ describe('makeInstallerURL', () => {
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-cs.dmg'
       ],
       [
-        ['current', 'x64', 'full', 'regular', 'win32'],
+        ['current', 'x64', 'full', 'BC', 'win32'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32-bc.exe'
       ],
       [
@@ -144,7 +152,7 @@ describe('makeInstallerURL', () => {
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32-cs.exe'
       ],
       [
-        ['current', 'x64', 'minimal', 'regular', 'win32'],
+        ['current', 'x64', 'minimal', 'BC', 'win32'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-bc.exe'
       ],
       [
