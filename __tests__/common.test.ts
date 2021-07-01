@@ -57,51 +57,51 @@ describe('makeInstallerURL', () => {
     ][] = [
       [
         ['7.4', 'x64', 'full', 'regular', 'linux'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux.sh'
+        'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux.sh'
       ],
       [
         ['7.4', 'x64', 'full', 'CS', 'linux'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux-cs.sh'
+        'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux-cs.sh'
       ],
       [
         ['7.4', 'x64', 'minimal', 'regular', 'linux'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux.sh'
+        'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux.sh'
       ],
       [
         ['7.4', 'x64', 'minimal', 'CS', 'linux'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux-cs.sh'
+        'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux-cs.sh'
       ],
       [
         ['7.4', 'x64', 'full', 'regular', 'darwin'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx.dmg'
+        'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx.dmg'
       ],
       [
         ['7.4', 'x64', 'full', 'CS', 'darwin'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx-cs.dmg'
+        'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx-cs.dmg'
       ],
       [
         ['7.4', 'x64', 'minimal', 'regular', 'darwin'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx.dmg'
+        'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx.dmg'
       ],
       [
         ['7.4', 'x64', 'minimal', 'CS', 'darwin'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx-cs.dmg'
+        'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx-cs.dmg'
       ],
       [
         ['7.4', 'x64', 'full', 'regular', 'win32'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32.exe'
+        'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32.exe'
       ],
       [
         ['7.4', 'x64', 'full', 'CS', 'win32'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32-cs.exe'
+        'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32-cs.exe'
       ],
       [
         ['7.4', 'x64', 'minimal', 'regular', 'win32'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32.exe'
+        'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32.exe'
       ],
       [
         ['7.4', 'x64', 'minimal', 'CS', 'win32'],
-        'https://mirror.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32-cs.exe'
+        'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32-cs.exe'
       ],
       [
         ['current', 'x64', 'full', 'regular', 'linux'],
