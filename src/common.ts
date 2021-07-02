@@ -36,10 +36,6 @@ const RACKET_EXTS: {[key: string]: string} = {
   win32: 'exe'
 };
 
-function isRacketBC(variant: Variant): boolean {
-  return variant === 'BC';
-}
-
 export function makeInstallerURL(
   version: string,
   arch: Arch,
@@ -56,7 +52,7 @@ export function makeInstallerURL(
   let maybeOS = '';
   let maybeSuffix = '';
 
-  if (isRacketBC(variant) && cmpVersions(version, '8.0') >= 0) {
+  if (variant === 'BC' && cmpVersions(version, '8.0') >= 0) {
     maybeSuffix = '-bc';
   } else if (variant === 'CS') {
     maybeSuffix = '-cs';
