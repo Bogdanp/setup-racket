@@ -129,7 +129,7 @@ async function installWin32(version: string, arch: Arch, path: string) {
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>racket</id>
-    <version>${version === 'current' ? '7.999' : version}</version>
+    <version>${version === 'current' ? '8.999' : version}</version>
     <title>Racket</title>
     <authors>PLT Inc.</authors>
     <description>The Racket programming language.</description>
