@@ -36,9 +36,15 @@ steps:
     distribution: 'full'
     variant: 'CS'
     version: '8.1'
-    packages: 'component, koyo' # must be a comma-separated string!
+- run: raco pkg install --auto component koyo
 - run: racket hello.rkt
 ```
+
+### Caching
+
+You can use [actions/cache] in combination with `setup-racket` to
+reduce the time spent installing dependencies.  See [this repo][cache]
+for an example.
 
 ### Custom Locations (only on Linux)
 
@@ -142,3 +148,5 @@ Installers for Apple Silicon Macs are available when the version is
 The scripts and documentation in this project are released under the [MIT License](LICENSE).
 
 [article]: https://defn.io/2020/05/05/github-actions-for-racket-revised/
+[actions/cache]: https://github.com/actions/cache
+[cache]: https://github.com/Bogdanp/setup-racket-cache-example
