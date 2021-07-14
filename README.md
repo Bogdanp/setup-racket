@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        racket-version: [ '7.8', '7.9', '8.0' '8.1' ]
+        racket-version: [ '7.8', '7.9', '8.0', '8.1' ]
     name: Racket ${{ matrix.racket-version }} sample
     steps:
       - uses: actions/checkout@master
