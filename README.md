@@ -21,7 +21,7 @@ steps:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
     distribution: 'full' # or: 'minimal'
     variant: 'CS'        # or: 'BC' for Racket Before Chez
-    version: '8.2'       # or: 'stable' for the latest version, 'current' for the latest snapshot, `pre-release` for the latest pre-release build
+    version: '8.2'       # or: 'stable' for the latest version, 'current' for the latest snapshot, 'pre-release' for the latest pre-release build
 - run: racket hello.rkt
 ```
 
