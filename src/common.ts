@@ -18,7 +18,7 @@ const RACKET_ARCHS: {[key: string]: string} = {
   'arm64-darwin': 'aarch64',
   'x86-darwin': 'i386',
   'x64-darwin': 'x86_64',
-  'x86-linux': 'x86_64',
+  'x86-linux': 'x86',
   'x64-linux': 'x86_64',
   'x86-win32': 'i386',
   'x64-win32': 'x86_64'
@@ -64,6 +64,10 @@ export function makeInstallerURL(
     if (platform === 'linux' && arch != 'arm32' && arch != 'arm64') {
       maybeOS = variant === 'CS' ? '-xenial' : '-precise';
     }
+  } else if (version === 'pre-release') {
+    base = 'http://pre-release.racket-lang.org/installers';
+    version = 'current';
+    maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
   }
 
   return `${base}/${prefix}-${version}-${racketArch}-${racketPlatform}${maybeOS}${maybeSuffix}.${racketExt}`;
@@ -129,7 +133,7 @@ async function installWin32(version: string, arch: Arch, path: string) {
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>racket</id>
-    <version>${version === 'current' ? '8.999' : version}</version>
+    <version>${isSnapshot(version) ? '8.999' : version}</version>
     <title>Racket</title>
     <authors>PLT Inc.</authors>
     <description>The Racket programming language.</description>
@@ -166,7 +170,7 @@ Install-ChocolateyPackage @packageArgs
   }
 
   let installDir = 'Racket';
-  if (version === 'current') {
+  if (isSnapshot(version)) {
     for await (const name of await fs.promises.readdir(programFilesPath)) {
       if (name.indexOf('Racket') === 0) {
         installDir = name;
@@ -327,9 +331,10 @@ export async function expandPath(p: string): Promise<string> {
   return path.trim();
 }
 
-export function parseVersion(v: string): 'current' | number {
+export function parseVersion(v: string): 'current' | 'pre-release' | number {
   switch (v) {
     case 'current':
+    case 'pre-release':
       return v;
     default:
       const [major, minor, patch, build] = v.split('.');
@@ -345,20 +350,21 @@ export function parseVersion(v: string): 'current' | number {
 export function cmpVersions(thisStr: string, otherStr: string): -1 | 0 | 1 {
   const thisVer = parseVersion(thisStr);
   const otherVer = parseVersion(otherStr);
-  if (thisVer === 'current') {
-    if (otherVer === 'current') {
-      return 0;
-    }
+  if (thisVer === otherVer) {
+    return 0;
+  } else if (thisVer === 'current') {
     return 1;
   } else if (otherVer === 'current') {
     return -1;
-  }
-
-  if (thisVer === otherVer) {
-    return 0;
+  } else if (thisVer === 'pre-release') {
+    return 1;
   } else if (thisVer > otherVer) {
     return 1;
   } else {
     return -1;
   }
+}
+
+function isSnapshot(version: string): boolean {
+  return ['current', 'pre-release'].indexOf(version) !== -1;
 }
