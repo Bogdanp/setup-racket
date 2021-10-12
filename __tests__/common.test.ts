@@ -118,19 +118,19 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'x64', 'full', 'BC', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-precise-bc.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-bc.sh'
       ],
       [
         ['current', 'x64', 'full', 'CS', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-xenial-cs.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-cs.sh'
       ],
       [
         ['current', 'x64', 'minimal', 'BC', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-precise-bc.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-bc.sh'
       ],
       [
         ['current', 'x64', 'minimal', 'CS', 'linux'],
-        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-xenial-cs.sh'
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-cs.sh'
       ],
       [
         ['current', 'x64', 'full', 'BC', 'darwin'],

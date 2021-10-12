@@ -49,7 +49,6 @@ export function makeInstallerURL(
 
   let base = `https://download.racket-lang.org/installers/${version}`;
   const prefix = distribution === 'minimal' ? 'racket-minimal' : 'racket';
-  let maybeOS = '';
   let maybeSuffix = '';
 
   if (variant === 'BC' && cmpVersions(version, '8.0') >= 0) {
@@ -61,16 +60,13 @@ export function makeInstallerURL(
   if (version === 'current') {
     base = 'https://www.cs.utah.edu/plt/snapshots/current/installers';
     maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
-    if (platform === 'linux' && arch != 'arm32' && arch != 'arm64') {
-      maybeOS = variant === 'CS' ? '-xenial' : '-precise';
-    }
   } else if (version === 'pre-release') {
     base = 'http://pre-release.racket-lang.org/installers';
     version = 'current';
     maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
   }
 
-  return `${base}/${prefix}-${version}-${racketArch}-${racketPlatform}${maybeOS}${maybeSuffix}.${racketExt}`;
+  return `${base}/${prefix}-${version}-${racketArch}-${racketPlatform}${maybeSuffix}.${racketExt}`;
 }
 
 async function installDarwin(path: string) {
