@@ -379,7 +379,7 @@ jobs:
     - run: npm install
     - run: npm run build
 
-    - name: install an unsupported version of Racket CS
+    - name: Install "current" version and check that variant = CS
       run: |
         node lib/setup-racket.js
         racket --version | grep '\[cs\]'
