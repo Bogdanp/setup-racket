@@ -17,8 +17,7 @@ import * as common from './common';
 
     let variantInput = core.getInput('variant');
     if (variantInput === '') {
-      const [ver] = version.split('.');
-      variantInput = Number(ver) >= 8 ? 'CS' : 'BC';
+      variantInput = common.cmpVersions(version, '8.0') >= 0 ? 'CS' : 'BC';
     }
 
     const variant = common.parseVariant(variantInput);

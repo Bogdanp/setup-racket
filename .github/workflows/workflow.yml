@@ -357,3 +357,31 @@ jobs:
       env:
         INPUT_VARIANT: 'CS'
         INPUT_VERSION: '7.3'
+
+  current_no_variant:
+    name: "Install current version w/o specifying a variant"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Set Node.js 12.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 12.x
+
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+    - run: npm install
+    - run: npm run build
+
+    - name: Install "current" version and check that variant = CS
+      run: |
+        node lib/setup-racket.js
+        racket --version | grep '\[cs\]'
+      env:
+        INPUT_VERSION: 'current'
