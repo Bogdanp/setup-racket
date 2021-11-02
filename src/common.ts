@@ -253,7 +253,15 @@ export async function prependCatalog(catalog: string) {
 }
 
 export async function installPackages(packages: string[]) {
-  await raco('pkg', 'install', '--auto', '--batch', '--fail-fast', ...packages);
+  await raco(
+    'pkg',
+    'install',
+    '--auto',
+    '--batch',
+    '--fail-fast',
+    '--skip-installed',
+    ...packages
+  );
 }
 
 export function parseArch(s: string): Arch {
