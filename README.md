@@ -81,7 +81,7 @@ steps:
     variant: 'CS'
     version: '8.3'
     dest: '$GITHUB_WORKSPACE/racket'
-    sudo: never # one of always or never
+    sudo: never # either 'always' or 'never'
 - run: "$GITHUB_WORKSPACE/racket/bin/racket" hello.rkt
 ```
 
