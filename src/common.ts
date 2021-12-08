@@ -265,7 +265,13 @@ export async function installPackages(packages: string[]) {
 }
 
 export function parseArch(s: string): Arch {
-  if (s !== 'x86' && s !== 'x64') {
+  if (
+    s !== 'aarch64' &&
+    s !== 'arm32' &&
+    s !== 'arm64' &&
+    s !== 'x86' &&
+    s !== 'x64'
+  ) {
     throw new Error(`invalid arch '${s}'`);
   }
 
