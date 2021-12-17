@@ -19,7 +19,7 @@ steps:
 - uses: Bogdanp/setup-racket@v1.7
   with:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
-    distribution: 'full' # or: 'minimal'
+    distribution: 'full' # or: 'minimal' (but you probably don't want 'minimal', see note at the bottom of this doc)
     variant: 'CS'        # or: 'BC' for Racket Before Chez
     version: '8.3'       # or: 'stable' for the latest version, 'current' for the latest snapshot, 'pre-release' for the latest pre-release build
 - run: racket hello.rkt
@@ -132,6 +132,18 @@ local catalog in the list will have the highest priority.
 
 
 ## Gotchas
+
+### `minimal` vs `full` distribution
+
+Using the `full` distribution instead of the `minimal` distribution
+will reduce your build times for most use cases.  Things you typically
+do in CI (run tests, build docs, etc.) require many dependencies not
+included in the `minimal` distribution, so you waste a lot of time
+downloading and installing those dependencies.  The `full` distribution
+comes with those dependencies pre-installed.  Only use the `minimal`
+distribution if you really know what you're doing.
+
+### CPU Architecture Notes
 
 Installers for `x86` are not available on Linux.
 
