@@ -92,6 +92,6 @@ import * as common from './common';
       });
     }
   } catch (err) {
-    core.setFailed(err.message);
+    core.setFailed((err as any).message);
   }
 })();
