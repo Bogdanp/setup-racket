@@ -19,10 +19,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: Set Node.js 12.x
+    - name: Set Node.js 17.x
       uses: actions/setup-node@master
       with:
-        node-version: 12.x
+        node-version: 17.x
 
     - name: Cache node_modules
       uses: actions/cache@v2
