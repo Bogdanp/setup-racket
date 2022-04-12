@@ -22,13 +22,13 @@
   "author": "Bogdanp",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.1",
-    "@actions/tool-cache": "^1.0.0",
+    "@actions/core": "^1.5",
+    "@actions/exec": "^1.1",
+    "@actions/io": "^1.1",
+    "@actions/tool-cache": "^1.7",
     "semver": "^6.1.1"
   },
   "devDependencies": {
-    "@actions/io": "^1.0.0",
     "@rollup/plugin-commonjs": "^18.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-typescript": "^8.2.1",
