@@ -16,12 +16,12 @@ tutorial on how to use it.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.7
+- uses: Bogdanp/setup-racket@v1.8
   with:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
     distribution: 'full' # or: 'minimal' (but you probably don't want 'minimal', see note at the bottom of this doc)
     variant: 'CS'        # or: 'BC' for Racket Before Chez
-    version: '8.3'       # or: 'stable' for the latest version, 'current' for the latest snapshot, 'pre-release' for the latest pre-release build
+    version: '8.5'       # or: 'stable' for the latest version, 'current' for the latest snapshot, 'pre-release' for the latest pre-release build
 - run: racket hello.rkt
 ```
 
@@ -30,12 +30,12 @@ steps:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.7
+- uses: Bogdanp/setup-racket@v1.8
   with:
     architecture: 'x64'
     distribution: 'full'
     variant: 'CS'
-    version: '8.3'
+    version: '8.5'
 - run: raco pkg install --auto component koyo
 - run: racket hello.rkt
 ```
@@ -51,12 +51,12 @@ for an example.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.7
+- uses: Bogdanp/setup-racket@v1.8
   with:
     architecture: 'x64'
     distribution: 'full'
     variant: 'CS'
-    version: '8.3'
+    version: '8.5'
     dest: '/opt/racket' # ignored on macOS and Windows
 - run: racket hello.rkt
 ```
@@ -74,12 +74,12 @@ Only on Linux. The default is to use `sudo` if the command exists.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.7
+- uses: Bogdanp/setup-racket@v1.8
   with:
     architecture: 'x64'
     distribution: 'full'
     variant: 'CS'
-    version: '8.3'
+    version: '8.5'
     dest: '$GITHUB_WORKSPACE/racket'
     sudo: never # either 'always' or 'never'
 - run: "$GITHUB_WORKSPACE/racket/bin/racket" hello.rkt
@@ -93,12 +93,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        racket-version: [ '8.0', '8.1', '8.2', '8.3' ]
+        racket-version: [ '8.2', '8.3', '8.4', '8.5' ]
     name: Racket ${{ matrix.racket-version }} sample
     steps:
       - uses: actions/checkout@master
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v1.7
+        uses: Bogdanp/setup-racket@v1.8
         with:
           architecture: x64
           version: ${{ matrix.racket-version }}
@@ -110,12 +110,12 @@ jobs:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.7
+- uses: Bogdanp/setup-racket@v1.8
   with:
     architecture: 'x64'
     distribution: 'minimal'
     variant: 'CS'
-    version: '8.3'
+    version: '8.5'
     dest: '/opt/racket'
     sudo: never
     local_catalogs: $GITHUB_WORKSPACE
