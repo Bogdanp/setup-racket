@@ -73,7 +73,7 @@ async function installDarwin(path: string) {
   await fs.promises.writeFile(
     '/tmp/install-racket.sh',
     `
-sudo hdiutil attach ${path} -mountpoint /Volumes/Racket -noverify -noautofsck
+sudo hdiutil attach ${path} -mountpoint /Volumes/Racket
 cp -rf /Volumes/Racket/Racket* /Applications/Racket
 sudo hdiutil detach /Volumes/Racket
 ln -s /Applications/Racket/bin/racket /usr/local/bin/racket
