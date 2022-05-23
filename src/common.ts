@@ -18,7 +18,7 @@ const RACKET_ARCHS: {[key: string]: string} = {
   'arm64-darwin': 'aarch64',
   'x86-darwin': 'i386',
   'x64-darwin': 'x86_64',
-  'x86-linux': 'x86',
+  'x86-linux': 'i386',
   'x64-linux': 'x86_64',
   'x86-win32': 'i386',
   'x64-win32': 'x86_64'

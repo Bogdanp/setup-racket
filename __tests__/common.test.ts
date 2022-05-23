@@ -117,6 +117,14 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/8.0/racket-8.0-x86_64-win32-cs.exe'
       ],
       [
+        ['current', 'x86', 'full', 'BC', 'linux'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-i386-linux-bc.sh'
+      ],
+      [
+        ['current', 'x86', 'full', 'CS', 'linux'],
+        'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-i386-linux-cs.sh'
+      ],
+      [
         ['current', 'x64', 'full', 'BC', 'linux'],
         'https://www.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-bc.sh'
       ],
