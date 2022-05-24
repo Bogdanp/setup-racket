@@ -145,8 +145,6 @@ distribution if you really know what you're doing.
 
 ### CPU Architecture Notes
 
-Installers for `x86` are not available on Linux.
-
 Installers for `arm32` are only currently available when the `version`
 is `current` and `arm64` installers are currently not available at
 all.
