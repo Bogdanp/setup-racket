@@ -22,7 +22,7 @@
   "author": "Bogdanp",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.5",
+    "@actions/core": "^1.9",
     "@actions/exec": "^1.1",
     "@actions/io": "^1.1",
     "@actions/tool-cache": "^1.7",
