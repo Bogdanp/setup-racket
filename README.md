@@ -154,7 +154,9 @@ Installers for Apple Silicon Macs are available when the version is
 
 ### Using `racket/gui`
 
-Tests which require `racket/gui`, even without using any graphical features, will fail due to not having a display. To get around this, use [gabrielbb/xvfb-action](https://github.com/marketplace/actions/gabrielbb-xvfb-action) to run your test like so:
+Tests which require `racket/gui`, even without using any graphical
+features, will fail due to not having a display. To get around this,
+use [gabrielbb/xvfb-action] to run your code like so:
 
 ```yaml
 steps:
@@ -167,6 +169,7 @@ steps:
       run: racket hello.rkt
 ```
 
+
 ## License
 
 The scripts and documentation in this project are released under the [MIT License](LICENSE).
@@ -174,3 +177,4 @@ The scripts and documentation in this project are released under the [MIT Licens
 [article]: https://defn.io/2020/05/05/github-actions-for-racket-revised/
 [actions/cache]: https://github.com/actions/cache
 [cache]: https://github.com/Bogdanp/setup-racket-cache-example
+[gabrielbb/xvfb-action]: https://github.com/marketplace/actions/gabrielbb-xvfb-action
