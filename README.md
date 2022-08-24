@@ -152,6 +152,20 @@ all.
 Installers for Apple Silicon Macs are available when the version is
 `current` and the arch is either `arm64` or `aarch64`.
 
+### Using `racket/gui`
+
+Tests which require `racket/gui`, even without using any graphical features, will fail due to not having a display. To get around this, use [gabrielbb/xvfb-action](https://github.com/marketplace/actions/gabrielbb-xvfb-action) to run your test like so:
+
+```yaml
+steps:
+- uses: actions/checkout@master
+- uses: Bogdanp/setup-racket@v1.8.1
+  with:
+    version: 'stable'
+- uses: GabrielBB/xvfb-action@v1
+  with:
+      run: racket hello.rkt
+```
 
 ## License
 
