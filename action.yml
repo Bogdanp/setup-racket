@@ -33,5 +33,5 @@ inputs:
     description: 'Use sudo or not (always, never).'
     default: ''
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'lib/setup-racket.js'
