@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-        racket-version: ["8.4", "8.5", "stable", "current", "pre-release"]
+        racket-version: ["8.5", "8.6", "stable", "current", "pre-release"]
         racket-variant: ["BC", "CS"]
     steps:
     - name: Checkout
@@ -94,7 +94,7 @@ jobs:
         architecture: 'x64'
         distribution: 'full'
         variant: 'CS'
-        version: '8.5'
+        version: '8.6'
     - name: test racket
       run: racket -e '(displayln 42)'
 
@@ -110,7 +110,7 @@ jobs:
         architecture: 'x64'
         distribution: 'full'
         variant: 'CS'
-        version: '8.5'
+        version: '8.6'
         catalogs: 'http://racksnaps.defn.io/built-snapshots/2020/05/02/catalog/'
         packages: nevermore, component
     - name: test racket
@@ -141,14 +141,14 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'BC'
-        INPUT_VERSION: '8.5'
+        INPUT_VERSION: '8.6'
         INPUT_DEST: /opt/racketbc
 
     - name: install CS
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.5'
+        INPUT_VERSION: '8.6'
         INPUT_DEST: /opt/racketcs
 
     - name: test BC
@@ -186,7 +186,7 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.5'
+        INPUT_VERSION: '8.6'
         INPUT_DEST: '${HOME}/racket'
         INPUT_SUDO: never
 
@@ -227,7 +227,7 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.5'
+        INPUT_VERSION: '8.6'
         INPUT_DEST: '/opt/racket'
         INPUT_SUDO: always
 
@@ -280,7 +280,7 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.5'
+        INPUT_VERSION: '8.6'
         INPUT_DISTRIBUTION: 'minimal'
         INPUT_DEST: '/opt/racket'
         INPUT_SUDO: never
