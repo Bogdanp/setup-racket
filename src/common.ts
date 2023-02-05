@@ -58,7 +58,7 @@ export function makeInstallerURL(
   }
 
   if (version === 'current') {
-    base = 'https://www.cs.utah.edu/plt/snapshots/current/installers';
+    base = 'https://users.cs.utah.edu/plt/snapshots/current/installers';
     maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
   } else if (version === 'pre-release') {
     base = 'http://pre-release.racket-lang.org/installers';
