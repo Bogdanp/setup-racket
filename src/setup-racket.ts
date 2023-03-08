@@ -10,6 +10,12 @@ import * as common from './common';
       });
     }
 
+    let snapshotSite: common.SnapshotSite = 'unset';
+    let snapshotSiteInput = core.getInput('snapshot_site');
+    if (snapshotSiteInput !== '') {
+      snapshotSite = common.parseSnapshotSite(snapshotSiteInput);
+    }
+
     const arch = common.parseArch(core.getInput('architecture') || 'x64');
     const distribution = common.parseDistribution(
       core.getInput('distribution') || 'full'
@@ -45,7 +51,8 @@ import * as common from './common';
           distribution,
           variant,
           dest,
-          useSudo
+          useSudo,
+          snapshotSite
         );
       }
     );

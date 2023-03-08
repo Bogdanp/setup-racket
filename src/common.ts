@@ -10,6 +10,7 @@ export type Variant = 'BC' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
 export type UseSudo = 'always' | 'never' | '';
+export type SnapshotSite = 'unset' | 'utah' | 'northwestern';
 
 const RACKET_ARCHS: {[key: string]: string} = {
   'aarch64-darwin': 'aarch64',
@@ -41,14 +42,15 @@ export function makeInstallerURL(
   arch: Arch,
   distribution: Distribution,
   variant: Variant,
-  platform: Platform
+  platform: Platform,
+  snapshotSite: SnapshotSite = 'unset'
 ) {
   const racketArch = RACKET_ARCHS[`${arch}-${platform}`];
   const racketPlatform = RACKET_PLATFORMS[platform];
   const racketExt = RACKET_EXTS[platform];
 
   let base = `https://download.racket-lang.org/installers/${version}`;
-  const prefix = distribution === 'minimal' ? 'racket-minimal' : 'racket';
+  let prefix = distribution === 'minimal' ? 'racket-minimal' : 'racket';
   let maybeSuffix = '';
 
   if (variant === 'BC' && cmpVersions(version, '8.0') >= 0) {
@@ -58,7 +60,20 @@ export function makeInstallerURL(
   }
 
   if (version === 'current') {
-    base = 'https://users.cs.utah.edu/plt/snapshots/current/installers';
+    switch (snapshotSite) {
+      case 'unset':
+      case 'utah':
+        base = 'https://users.cs.utah.edu/plt/snapshots/current/installers';
+        break;
+      case 'northwestern':
+        // https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-win32.exe
+        // https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-win32.exe
+        base = 'https://plt.cs.northwestern.edu/snapshots/current/installers';
+        if (distribution === 'full') {
+          prefix += '-test';
+        }
+        break;
+    }
     maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
   } else if (version === 'pre-release') {
     base = 'http://pre-release.racket-lang.org/installers';
@@ -189,14 +204,16 @@ export async function install(
   distribution: Distribution,
   variant: Variant,
   dest: string,
-  useSudo: UseSudo
+  useSudo: UseSudo,
+  snapshotSite: SnapshotSite
 ) {
   const url = makeInstallerURL(
     version,
     arch,
     distribution,
     variant,
-    process.platform as Platform
+    process.platform as Platform,
+    snapshotSite
   );
   core.info(`installerURL = ${url}`);
 
@@ -355,6 +372,15 @@ export function parseVersion(v: string): 'current' | 'pre-release' | number {
         Number(build || '0')
       );
   }
+}
+
+export function parseSnapshotSite(s: string): SnapshotSite {
+  if (s !== 'utah' && s !== 'northwestern') {
+    throw new Error(
+      `invalid snapshot site '${s}'\n  must be one of: 'utah', 'northwestern'`
+    );
+  }
+  return s;
 }
 
 export function cmpVersions(thisStr: string, otherStr: string): -1 | 0 | 1 {

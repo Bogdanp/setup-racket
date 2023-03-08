@@ -56,216 +56,390 @@ describe('makeInstallerURL', () => {
         common.Arch,
         common.Distribution,
         common.Variant,
-        common.Platform
+        common.Platform,
+        common.SnapshotSite
       ],
       string
     ][] = [
       [
-        ['7.4', 'x64', 'full', 'BC', 'linux'],
+        ['7.4', 'x64', 'full', 'BC', 'linux', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux.sh'
       ],
       [
-        ['7.4', 'x64', 'full', 'CS', 'linux'],
+        ['7.4', 'x64', 'full', 'CS', 'linux', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-linux-cs.sh'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'BC', 'linux'],
+        ['7.4', 'x64', 'minimal', 'BC', 'linux', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux.sh'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'CS', 'linux'],
+        ['7.4', 'x64', 'minimal', 'CS', 'linux', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-linux-cs.sh'
       ],
       [
-        ['7.4', 'x64', 'full', 'BC', 'darwin'],
+        ['7.4', 'x64', 'full', 'BC', 'darwin', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx.dmg'
       ],
       [
-        ['7.4', 'x64', 'full', 'CS', 'darwin'],
+        ['7.4', 'x64', 'full', 'CS', 'darwin', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-macosx-cs.dmg'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'BC', 'darwin'],
+        ['7.4', 'x64', 'minimal', 'BC', 'darwin', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx.dmg'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'CS', 'darwin'],
+        ['7.4', 'x64', 'minimal', 'CS', 'darwin', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-macosx-cs.dmg'
       ],
       [
-        ['7.4', 'x64', 'full', 'BC', 'win32'],
+        ['7.4', 'x64', 'full', 'BC', 'win32', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32.exe'
       ],
       [
-        ['7.4', 'x64', 'full', 'CS', 'win32'],
+        ['7.4', 'x64', 'full', 'CS', 'win32', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-7.4-x86_64-win32-cs.exe'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'BC', 'win32'],
+        ['7.4', 'x64', 'minimal', 'BC', 'win32', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32.exe'
       ],
       [
-        ['7.4', 'x64', 'minimal', 'CS', 'win32'],
+        ['7.4', 'x64', 'minimal', 'CS', 'win32', 'unset'],
         'https://download.racket-lang.org/installers/7.4/racket-minimal-7.4-x86_64-win32-cs.exe'
       ],
       [
-        ['8.0', 'x64', 'full', 'BC', 'win32'],
+        ['8.0', 'x64', 'full', 'BC', 'win32', 'unset'],
         'https://download.racket-lang.org/installers/8.0/racket-8.0-x86_64-win32-bc.exe'
       ],
       [
-        ['8.0', 'x64', 'full', 'CS', 'win32'],
+        ['8.0', 'x64', 'full', 'CS', 'win32', 'unset'],
         'https://download.racket-lang.org/installers/8.0/racket-8.0-x86_64-win32-cs.exe'
       ],
       [
-        ['current', 'x86', 'full', 'BC', 'linux'],
+        ['current', 'x86', 'full', 'BC', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-i386-linux-bc.sh'
       ],
+
       [
-        ['current', 'x86', 'full', 'CS', 'linux'],
+        ['current', 'x86', 'full', 'CS', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-i386-linux-cs.sh'
       ],
       [
-        ['current', 'x64', 'full', 'BC', 'linux'],
+        ['current', 'x64', 'full', 'BC', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-bc.sh'
       ],
       [
-        ['current', 'x64', 'full', 'CS', 'linux'],
+        ['current', 'x64', 'full', 'CS', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-cs.sh'
       ],
       [
-        ['current', 'x64', 'minimal', 'BC', 'linux'],
+        ['current', 'x64', 'minimal', 'BC', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-bc.sh'
       ],
       [
-        ['current', 'x64', 'minimal', 'CS', 'linux'],
+        ['current', 'x64', 'minimal', 'CS', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-cs.sh'
       ],
       [
-        ['current', 'x64', 'full', 'BC', 'darwin'],
+        ['current', 'x64', 'full', 'BC', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx-bc.dmg'
       ],
       [
-        ['current', 'x64', 'full', 'CS', 'darwin'],
+        ['current', 'x64', 'full', 'CS', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx-cs.dmg'
       ],
       [
-        ['current', 'x64', 'minimal', 'BC', 'darwin'],
+        ['current', 'x64', 'minimal', 'BC', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-bc.dmg'
       ],
       [
-        ['current', 'x64', 'minimal', 'CS', 'darwin'],
+        ['current', 'x64', 'minimal', 'CS', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-cs.dmg'
       ],
       [
-        ['current', 'x64', 'full', 'BC', 'win32'],
+        ['current', 'x64', 'full', 'BC', 'win32', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32-bc.exe'
       ],
       [
-        ['current', 'x64', 'full', 'CS', 'win32'],
+        ['current', 'x64', 'full', 'CS', 'win32', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32-cs.exe'
       ],
       [
-        ['current', 'x64', 'minimal', 'BC', 'win32'],
+        ['current', 'x64', 'minimal', 'BC', 'win32', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-bc.exe'
       ],
       [
-        ['current', 'x64', 'minimal', 'CS', 'win32'],
+        ['current', 'x64', 'minimal', 'CS', 'win32', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-cs.exe'
       ],
       [
-        ['current', 'arm32', 'full', 'CS', 'linux'],
+        ['current', 'arm32', 'full', 'CS', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-arm-linux-cs.sh'
       ],
       [
-        ['current', 'arm32', 'minimal', 'CS', 'linux'],
+        ['current', 'arm32', 'minimal', 'CS', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-cs.sh'
       ],
       [
-        ['current', 'arm32', 'full', 'BC', 'linux'],
+        ['current', 'arm32', 'full', 'BC', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-arm-linux-bc.sh'
       ],
       [
-        ['current', 'arm32', 'minimal', 'BC', 'linux'],
+        ['current', 'arm32', 'minimal', 'BC', 'linux', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-bc.sh'
       ],
       [
-        ['current', 'aarch64', 'full', 'CS', 'darwin'],
+        ['current', 'aarch64', 'full', 'CS', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
       ],
       [
-        ['current', 'aarch64', 'minimal', 'CS', 'darwin'],
+        ['current', 'aarch64', 'minimal', 'CS', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
       ],
       [
-        ['current', 'arm64', 'full', 'CS', 'darwin'],
+        ['current', 'arm64', 'full', 'CS', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
       ],
       [
-        ['current', 'arm64', 'minimal', 'CS', 'darwin'],
+        ['current', 'arm64', 'minimal', 'CS', 'darwin', 'unset'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
       ],
       [
-        ['pre-release', 'x64', 'minimal', 'CS', 'linux'],
+        ['current', 'x86', 'full', 'CS', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-i386-linux-cs.sh'
+      ],
+      [
+        ['current', 'x64', 'full', 'BC', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-bc.sh'
+      ],
+      [
+        ['current', 'x64', 'full', 'CS', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-linux-cs.sh'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'BC', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-bc.sh'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'CS', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-linux-cs.sh'
+      ],
+      [
+        ['current', 'x64', 'full', 'BC', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx-bc.dmg'
+      ],
+      [
+        ['current', 'x64', 'full', 'CS', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'BC', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-bc.dmg'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'CS', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'x64', 'full', 'BC', 'win32', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32-bc.exe'
+      ],
+      [
+        ['current', 'x64', 'full', 'CS', 'win32', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-x86_64-win32-cs.exe'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'BC', 'win32', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-bc.exe'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'CS', 'win32', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-x86_64-win32-cs.exe'
+      ],
+      [
+        ['current', 'arm32', 'full', 'CS', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-arm-linux-cs.sh'
+      ],
+      [
+        ['current', 'arm32', 'minimal', 'CS', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-cs.sh'
+      ],
+      [
+        ['current', 'arm32', 'full', 'BC', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-arm-linux-bc.sh'
+      ],
+      [
+        ['current', 'arm32', 'minimal', 'BC', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-bc.sh'
+      ],
+      [
+        ['current', 'aarch64', 'full', 'CS', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'aarch64', 'minimal', 'CS', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'arm64', 'full', 'CS', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'arm64', 'minimal', 'CS', 'darwin', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'x86', 'full', 'BC', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-i386-linux-bc.sh'
+      ],
+      [
+        ['current', 'x86', 'full', 'CS', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-i386-linux-cs.sh'
+      ],
+      [
+        ['current', 'x64', 'full', 'BC', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-linux-bc.sh'
+      ],
+      [
+        ['current', 'x64', 'full', 'CS', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-linux-cs.sh'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'BC', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-linux-bc.sh'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'CS', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-linux-cs.sh'
+      ],
+      [
+        ['current', 'x64', 'full', 'BC', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-macosx-bc.dmg'
+      ],
+      [
+        ['current', 'x64', 'full', 'CS', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'BC', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-macosx-bc.dmg'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'CS', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'x64', 'full', 'BC', 'win32', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-win32-bc.exe'
+      ],
+      [
+        ['current', 'x64', 'full', 'CS', 'win32', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-win32-cs.exe'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'BC', 'win32', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-win32-bc.exe'
+      ],
+      [
+        ['current', 'x64', 'minimal', 'CS', 'win32', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-win32-cs.exe'
+      ],
+      [
+        ['current', 'arm32', 'full', 'CS', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-arm-linux-cs.sh'
+      ],
+      [
+        ['current', 'arm32', 'minimal', 'CS', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-arm-linux-cs.sh'
+      ],
+      [
+        ['current', 'arm32', 'full', 'BC', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-arm-linux-bc.sh'
+      ],
+      [
+        ['current', 'arm32', 'minimal', 'BC', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-arm-linux-bc.sh'
+      ],
+      [
+        ['current', 'aarch64', 'full', 'CS', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'aarch64', 'minimal', 'CS', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'arm64', 'full', 'CS', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['current', 'arm64', 'minimal', 'CS', 'darwin', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
+      ],
+      [
+        ['pre-release', 'x64', 'minimal', 'CS', 'linux', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-x86_64-linux-cs.sh'
       ],
       [
-        ['pre-release', 'x64', 'minimal', 'BC', 'linux'],
+        ['pre-release', 'x64', 'minimal', 'BC', 'linux', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-x86_64-linux-bc.sh'
       ],
       [
-        ['pre-release', 'x64', 'full', 'CS', 'linux'],
+        ['pre-release', 'x64', 'full', 'CS', 'linux', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-x86_64-linux-cs.sh'
       ],
       [
-        ['pre-release', 'x64', 'full', 'BC', 'linux'],
+        ['pre-release', 'x64', 'full', 'BC', 'linux', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-x86_64-linux-bc.sh'
       ],
       [
-        ['pre-release', 'arm64', 'minimal', 'CS', 'darwin'],
+        ['pre-release', 'arm64', 'minimal', 'CS', 'darwin', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-aarch64-macosx-cs.dmg'
       ],
       [
-        ['pre-release', 'x64', 'minimal', 'CS', 'darwin'],
+        ['pre-release', 'x64', 'minimal', 'CS', 'darwin', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-x86_64-macosx-cs.dmg'
       ],
       [
-        ['pre-release', 'x64', 'minimal', 'BC', 'darwin'],
+        ['pre-release', 'x64', 'minimal', 'BC', 'darwin', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-x86_64-macosx-bc.dmg'
       ],
       [
-        ['pre-release', 'arm64', 'full', 'CS', 'darwin'],
+        ['pre-release', 'arm64', 'full', 'CS', 'darwin', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-aarch64-macosx-cs.dmg'
       ],
       [
-        ['pre-release', 'x64', 'full', 'CS', 'darwin'],
+        ['pre-release', 'x64', 'full', 'CS', 'darwin', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-x86_64-macosx-cs.dmg'
       ],
       [
-        ['pre-release', 'x64', 'full', 'BC', 'darwin'],
+        ['pre-release', 'x64', 'full', 'BC', 'darwin', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-x86_64-macosx-bc.dmg'
       ],
       [
-        ['pre-release', 'x86', 'minimal', 'CS', 'win32'],
+        ['pre-release', 'x86', 'minimal', 'CS', 'win32', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-i386-win32-cs.exe'
       ],
       [
-        ['pre-release', 'x64', 'minimal', 'CS', 'win32'],
+        ['pre-release', 'x64', 'minimal', 'CS', 'win32', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-x86_64-win32-cs.exe'
       ],
       [
-        ['pre-release', 'x64', 'minimal', 'BC', 'win32'],
+        ['pre-release', 'x64', 'minimal', 'BC', 'win32', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-minimal-current-x86_64-win32-bc.exe'
       ],
       [
-        ['pre-release', 'x86', 'full', 'CS', 'win32'],
+        ['pre-release', 'x86', 'full', 'CS', 'win32', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-i386-win32-cs.exe'
       ],
       [
-        ['pre-release', 'x64', 'full', 'CS', 'win32'],
+        ['pre-release', 'x64', 'full', 'CS', 'win32', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-x86_64-win32-cs.exe'
       ],
       [
-        ['pre-release', 'x64', 'full', 'BC', 'win32'],
+        ['pre-release', 'x64', 'full', 'BC', 'win32', 'unset'],
         'http://pre-release.racket-lang.org/installers/racket-current-x86_64-win32-bc.exe'
       ]
     ];

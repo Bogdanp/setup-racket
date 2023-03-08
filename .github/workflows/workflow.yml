@@ -385,3 +385,51 @@ jobs:
         racket --version | grep '\[cs\]'
       env:
         INPUT_VERSION: 'current'
+
+  current_northwestern:
+    name: "Install current version from Northwestern site (${{ matrix.racket-variant }}, ${{ matrix.racket-distribution }}, ${{ matrix.os }})"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest", "ubuntu-latest", "windows-latest"]
+        racket-version: ["current"]
+        racket-variant: ["BC", "CS"]
+        racket-distribution: ["full", "minimal"]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - name: Setup Node.js 17.x
+      uses: actions/setup-node@master
+      with:
+        node-version: 17.x
+
+    - name: Cache node_modules
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+    - name: npm install
+      run: npm install
+
+    - name: Lint
+      run: npm run format-check
+
+    - run: npm test
+    - run: npm run build
+
+    - name: run
+      run: node lib/setup-racket.js
+      env:
+        INPUT_VARIANT: ${{ matrix.racket-variant }}
+        INPUT_VERSION: ${{ matrix.racket-version }}
+        INPUT_DISTRIBUTION: ${{ matrix.racket-distribution }}
+        INPUT_SNAPSHOT_SITE: 'northwestern'
+
+    - name: test racket
+      run: racket -e '(displayln 42)'
+
+    - name: test package installation
+      run: raco pkg install --auto --batch nevermore
