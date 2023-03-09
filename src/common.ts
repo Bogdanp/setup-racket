@@ -11,7 +11,7 @@ export type Variant = 'BC' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
 export type UseSudo = 'always' | 'never' | '';
-export type SnapshotSite = 'utah' | 'northwestern';
+export type SnapshotSite = 'none' | 'utah' | 'northwestern';
 export type SnapshotSiteOption = 'auto' | SnapshotSite;
 
 const RACKET_ARCHS: {[key: string]: string} = {
@@ -48,7 +48,7 @@ export function makeInstallerURL(
   distribution: Distribution,
   variant: Variant,
   platform: Platform,
-  snapshotSite: SnapshotSite = 'utah'
+  snapshotSite: SnapshotSite
 ) {
   const racketArch = RACKET_ARCHS[`${arch}-${platform}`];
   const racketPlatform = RACKET_PLATFORMS[platform];
@@ -66,6 +66,8 @@ export function makeInstallerURL(
 
   if (version === 'current') {
     switch (snapshotSite) {
+      case 'none':
+        throw new Error(`selected 'none' snapshot site with 'current' version`);
       case 'utah':
         base = `${UTAH_SNAPSHOT_SITE}/snapshots/current/installers`;
         break;
@@ -402,7 +404,7 @@ function isSnapshot(version: string): boolean {
 // TODO: Currently, this checks for the first live site and ends up
 // preferring Utah.  Ideally, we'd compare the build times and return
 // the one that completed most recently.
-export async function findBestSnapshotSite(): Promise<SnapshotSite> {
+export async function selectSnapshotSite(): Promise<SnapshotSite> {
   interface CheckResult {
     site: SnapshotSite;
     ok: boolean;

@@ -18,8 +18,8 @@ inputs:
     description: 'Racket version to use.'
     required: true
   snapshot_site:
-    description: "The site to download snapshot versions from ('utah' or 'northwestern')."
-    default: 'utah'
+    description: "The site to download snapshot versions from ('auto', 'utah' or 'northwestern')."
+    default: 'auto'
   catalogs:
     description: 'A comma-separated list of package catalogs to use when installing packages.'
     default: ''

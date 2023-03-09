@@ -15,18 +15,18 @@ import * as common from './common';
     if (snapshotSiteInput !== '') {
       snapshotSiteOpt = common.parseSnapshotSiteOption(snapshotSiteInput);
     }
-    let snapshotSite: common.SnapshotSite;
-    if (snapshotSiteOpt === 'auto' && version !== 'current') {
-      snapshotSite = 'utah'; // avoid trying to findBestSnapshotSite for non-snapshot versions
-    } else if (snapshotSiteOpt === 'auto') {
-      snapshotSite = await core.group(
-        'Finding best snapshot site...',
-        async () => {
-          const site = await common.findBestSnapshotSite();
-          core.info(`site = ${site}`);
-          return site;
-        }
-      );
+    let snapshotSite: common.SnapshotSite = 'none';
+    if (snapshotSiteOpt === 'auto') {
+      if (version === 'current') {
+        snapshotSite = await core.group(
+          'Selecting snapshot site...',
+          async () => {
+            const site = await common.selectSnapshotSite();
+            core.info(`site = ${site}`);
+            return site;
+          }
+        );
+      }
     } else {
       snapshotSite = snapshotSiteOpt;
     }
