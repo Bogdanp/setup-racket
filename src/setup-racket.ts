@@ -10,10 +10,21 @@ import * as common from './common';
       });
     }
 
-    let snapshotSite: common.SnapshotSite = 'unset';
-    let snapshotSiteInput = core.getInput('snapshot_site');
+    let snapshotSiteOpt: common.SnapshotSiteOption = 'auto';
+    const snapshotSiteInput = core.getInput('snapshot_site');
     if (snapshotSiteInput !== '') {
-      snapshotSite = common.parseSnapshotSite(snapshotSiteInput);
+      snapshotSiteOpt = common.parseSnapshotSiteOption(snapshotSiteInput);
+    }
+    let snapshotSite: common.SnapshotSite;
+    if (snapshotSiteOpt === 'auto' && version !== 'current') {
+      snapshotSite = 'utah'; // avoid trying to findBestSnapshotSite for non-snapshot versions
+    } else if (snapshotSiteOpt === 'auto') {
+      snapshotSite = await core.group(
+        'Finding best snapshot site...',
+        async () => await common.findBestSnapshotSite()
+      );
+    } else {
+      snapshotSite = snapshotSiteOpt;
     }
 
     const arch = common.parseArch(core.getInput('architecture') || 'x64');

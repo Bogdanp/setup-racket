@@ -2,6 +2,7 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as tc from '@actions/tool-cache';
 import * as http from 'http';
+import * as https from 'https';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -10,7 +11,8 @@ export type Variant = 'BC' | 'CS';
 export type Distribution = 'minimal' | 'full';
 export type Platform = 'darwin' | 'linux' | 'win32';
 export type UseSudo = 'always' | 'never' | '';
-export type SnapshotSite = 'unset' | 'utah' | 'northwestern';
+export type SnapshotSite = 'utah' | 'northwestern';
+export type SnapshotSiteOption = 'auto' | SnapshotSite;
 
 const RACKET_ARCHS: {[key: string]: string} = {
   'aarch64-darwin': 'aarch64',
@@ -37,13 +39,16 @@ const RACKET_EXTS: {[key: string]: string} = {
   win32: 'exe'
 };
 
+const UTAH_SNAPSHOT_SITE = 'https://users.cs.utah.edu/plt';
+const NORTHWESTERN_SNAPSHOT_SITE = 'https://plt.cs.northwestern.edu';
+
 export function makeInstallerURL(
   version: string,
   arch: Arch,
   distribution: Distribution,
   variant: Variant,
   platform: Platform,
-  snapshotSite: SnapshotSite = 'unset'
+  snapshotSite: SnapshotSite = 'utah'
 ) {
   const racketArch = RACKET_ARCHS[`${arch}-${platform}`];
   const racketPlatform = RACKET_PLATFORMS[platform];
@@ -61,14 +66,12 @@ export function makeInstallerURL(
 
   if (version === 'current') {
     switch (snapshotSite) {
-      case 'unset':
       case 'utah':
-        base = 'https://users.cs.utah.edu/plt/snapshots/current/installers';
+        base = `${UTAH_SNAPSHOT_SITE}/snapshots/current/installers`;
         break;
       case 'northwestern':
-        // https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-win32.exe
-        // https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-win32.exe
-        base = 'https://plt.cs.northwestern.edu/snapshots/current/installers';
+        base = `${NORTHWESTERN_SNAPSHOT_SITE}/snapshots/current/installers`;
+        // FIXME: Remove once Robby adds new distros.
         if (distribution === 'full') {
           prefix += '-test';
         }
@@ -374,15 +377,6 @@ export function parseVersion(v: string): 'current' | 'pre-release' | number {
   }
 }
 
-export function parseSnapshotSite(s: string): SnapshotSite {
-  if (s !== 'utah' && s !== 'northwestern') {
-    throw new Error(
-      `invalid snapshot site '${s}'\n  must be one of: 'utah', 'northwestern'`
-    );
-  }
-  return s;
-}
-
 export function cmpVersions(thisStr: string, otherStr: string): -1 | 0 | 1 {
   const thisVer = parseVersion(thisStr);
   const otherVer = parseVersion(otherStr);
@@ -403,4 +397,39 @@ export function cmpVersions(thisStr: string, otherStr: string): -1 | 0 | 1 {
 
 function isSnapshot(version: string): boolean {
   return ['current', 'pre-release'].indexOf(version) !== -1;
+}
+
+// TODO: Currently, this checks for the first live site and ends up
+// preferring Utah.  Ideally, we'd compare the build times and return
+// the one that completed most recently.
+export async function findBestSnapshotSite(): Promise<SnapshotSite> {
+  interface CheckResult {
+    site: SnapshotSite;
+    ok: boolean;
+  }
+  const sites: Array<[string, SnapshotSite]> = [
+    [UTAH_SNAPSHOT_SITE, 'utah'],
+    [NORTHWESTERN_SNAPSHOT_SITE, 'northwestern']
+  ];
+  const promises: Array<Promise<CheckResult>> = sites.map(pair => {
+    const [root, site] = pair;
+    return new Promise(resolve => {
+      https.get(`${root}/snapshots/current/index.html`, res => {
+        resolve({site, ok: res.statusCode === 200});
+      });
+    });
+  });
+  for (const res of await Promise.all(promises)) {
+    if (res.ok) return res.site;
+  }
+  throw new Error('no live snapshot sites found');
+}
+
+export function parseSnapshotSiteOption(s: string): SnapshotSiteOption {
+  if (s !== 'auto' && s !== 'utah' && s !== 'northwestern') {
+    throw new Error(
+      `invalid snapshot site '${s}'\n  must be one of: 'auto', 'utah', or 'northwestern'`
+    );
+  }
+  return s;
 }

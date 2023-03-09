@@ -130,11 +130,12 @@ You can provide multiple local catalog paths by separating them with
 commas.  They are prepended to the catalog set in order so the first
 local catalog in the list will have the highest priority.
 
-### Northwestern Snapshots
+### Snapshot Sites
 
-By default, snapshots are downloaded from the [Utah snapshot site],
-but you can select the [Northwestern site] using the `snapshot_site`
-option.
+By default, snapshots are downloaded from whichever snapshot site is
+currently live, preferring the [Utah snapshot site] over the
+[Northwestern site].  You can select a specific snapshot site using
+the `snapshot_site` option.
 
 ```yaml
 steps:
@@ -145,7 +146,7 @@ steps:
     distribution: 'full'
     variant: 'CS'
     version: 'current'
-    snapshot_site: 'northwestern' # or: 'utah', defaults to 'utah'
+    snapshot_site: 'northwestern' # or: 'auto', 'utah' (defaults to 'auto')
 - run: racket hello.rkt
 ```
 
