@@ -21,7 +21,11 @@ import * as common from './common';
     } else if (snapshotSiteOpt === 'auto') {
       snapshotSite = await core.group(
         'Finding best snapshot site...',
-        async () => await common.findBestSnapshotSite()
+        async () => {
+          const site = await common.findBestSnapshotSite();
+          core.info(`site = ${site}`);
+          return site;
+        }
       );
     } else {
       snapshotSite = snapshotSiteOpt;
