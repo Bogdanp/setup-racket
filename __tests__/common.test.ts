@@ -210,19 +210,19 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'x86', 'full', 'BC', 'linux', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-i386-linux-bc.sh'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-i386-linux-bc.sh'
       ],
       [
         ['current', 'x86', 'full', 'CS', 'linux', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-i386-linux-cs.sh'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-i386-linux-cs.sh'
       ],
       [
         ['current', 'x64', 'full', 'BC', 'linux', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-linux-bc.sh'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-x86_64-linux-bc.sh'
       ],
       [
         ['current', 'x64', 'full', 'CS', 'linux', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-linux-cs.sh'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-x86_64-linux-cs.sh'
       ],
       [
         ['current', 'x64', 'minimal', 'BC', 'linux', 'northwestern'],
@@ -234,11 +234,11 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'x64', 'full', 'BC', 'darwin', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-macosx-bc.dmg'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-x86_64-macosx-bc.dmg'
       ],
       [
         ['current', 'x64', 'full', 'CS', 'darwin', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-macosx-cs.dmg'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-x86_64-macosx-cs.dmg'
       ],
       [
         ['current', 'x64', 'minimal', 'BC', 'darwin', 'northwestern'],
@@ -250,11 +250,11 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'x64', 'full', 'BC', 'win32', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-win32-bc.exe'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-x86_64-win32-bc.exe'
       ],
       [
         ['current', 'x64', 'full', 'CS', 'win32', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-win32-cs.exe'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-x86_64-win32-cs.exe'
       ],
       [
         ['current', 'x64', 'minimal', 'BC', 'win32', 'northwestern'],
@@ -266,7 +266,7 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'arm32', 'full', 'CS', 'linux', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-arm-linux-cs.sh'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-arm-linux-cs.sh'
       ],
       [
         ['current', 'arm32', 'minimal', 'CS', 'linux', 'northwestern'],
@@ -274,7 +274,7 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'arm32', 'full', 'BC', 'linux', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-arm-linux-bc.sh'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-arm-linux-bc.sh'
       ],
       [
         ['current', 'arm32', 'minimal', 'BC', 'linux', 'northwestern'],
@@ -282,7 +282,7 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'aarch64', 'full', 'CS', 'darwin', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-aarch64-macosx-cs.dmg'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
       ],
       [
         ['current', 'aarch64', 'minimal', 'CS', 'darwin', 'northwestern'],
@@ -290,7 +290,7 @@ describe('makeInstallerURL', () => {
       ],
       [
         ['current', 'arm64', 'full', 'CS', 'darwin', 'northwestern'],
-        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-aarch64-macosx-cs.dmg'
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-aarch64-macosx-cs.dmg'
       ],
       [
         ['current', 'arm64', 'minimal', 'CS', 'darwin', 'northwestern'],
