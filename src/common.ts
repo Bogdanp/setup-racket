@@ -73,10 +73,6 @@ export function makeInstallerURL(
         break;
       case 'northwestern':
         base = `${NORTHWESTERN_SNAPSHOT_SITE}/snapshots/current/installers`;
-        // FIXME: Remove once Robby adds new distros.
-        if (distribution === 'full') {
-          prefix += '-test';
-        }
         break;
     }
     maybeSuffix = variant === 'CS' ? '-cs' : '-bc';
@@ -401,13 +397,11 @@ function isSnapshot(version: string): boolean {
   return ['current', 'pre-release'].indexOf(version) !== -1;
 }
 
-// TODO: Currently, this checks for the first live site and ends up
-// preferring Utah.  Ideally, we'd compare the build times and return
-// the one that completed most recently.
 export async function selectSnapshotSite(): Promise<SnapshotSite> {
   interface CheckResult {
-    site: SnapshotSite;
     ok: boolean;
+    site: SnapshotSite;
+    stamp: string;
   }
   const sites: Array<[string, SnapshotSite]> = [
     [UTAH_SNAPSHOT_SITE, 'utah'],
@@ -416,15 +410,25 @@ export async function selectSnapshotSite(): Promise<SnapshotSite> {
   const promises: Array<Promise<CheckResult>> = sites.map(pair => {
     const [root, site] = pair;
     return new Promise(resolve => {
-      https.get(`${root}/snapshots/current/index.html`, res => {
-        resolve({site, ok: res.statusCode === 200});
-      });
+      https
+        .get(`${root}/snapshots/current/stamp.txt`, res => {
+          let data = '';
+          res.on('error', () => resolve({ok: false, site, stamp: ''}));
+          res.on('data', chunk => (data += chunk));
+          res.on('end', () => {
+            resolve({ok: res.statusCode === 200, site, stamp: data.trim()});
+          });
+        })
+        .on('error', () => resolve({ok: false, site, stamp: ''}));
     });
   });
-  for (const res of await Promise.all(promises)) {
-    if (res.ok) return res.site;
+  const results = (await Promise.all(promises))
+    .filter(r => r.ok)
+    .sort((a, b) => (a.stamp > b.stamp ? -1 : 1));
+  if (results.length === 0) {
+    throw new Error('no live snapshot sites found');
   }
-  throw new Error('no live snapshot sites found');
+  return results[0].site;
 }
 
 export function parseSnapshotSiteOption(s: string): SnapshotSiteOption {

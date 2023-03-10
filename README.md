@@ -132,10 +132,10 @@ local catalog in the list will have the highest priority.
 
 ### Snapshot Sites
 
-By default, snapshots are downloaded from whichever snapshot site is
-currently live, preferring the [Utah snapshot site] over the
-[Northwestern site].  You can select a specific snapshot site using
-the `snapshot_site` option.
+By default, snapshots are downloaded from whichever snapshot site
+(between the [Utah snapshot site] and the [Northwestern site]) has
+built a snapshot most recently.  You can select a specific snapshot
+site using the `snapshot_site` option.
 
 ```yaml
 steps:
