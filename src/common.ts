@@ -397,7 +397,12 @@ function isSnapshot(version: string): boolean {
   return ['current', 'pre-release'].indexOf(version) !== -1;
 }
 
-export async function selectSnapshotSite(): Promise<SnapshotSite> {
+export async function selectSnapshotSite(
+  version: string,
+  arch: Arch,
+  distribution: Distribution,
+  variant: Variant
+): Promise<SnapshotSite> {
   interface CheckResult {
     ok: boolean;
     site: SnapshotSite;
@@ -407,20 +412,23 @@ export async function selectSnapshotSite(): Promise<SnapshotSite> {
     [UTAH_SNAPSHOT_SITE, 'utah'],
     [NORTHWESTERN_SNAPSHOT_SITE, 'northwestern']
   ];
-  const promises: Array<Promise<CheckResult>> = sites.map(pair => {
+  const promises: Array<Promise<CheckResult>> = sites.map(async pair => {
     const [root, site] = pair;
-    return new Promise(resolve => {
-      https
-        .get(`${root}/snapshots/current/stamp.txt`, res => {
-          let data = '';
-          res.on('error', () => resolve({ok: false, site, stamp: ''}));
-          res.on('data', chunk => (data += chunk));
-          res.on('end', () => {
-            resolve({ok: res.statusCode === 200, site, stamp: data.trim()});
-          });
-        })
-        .on('error', () => resolve({ok: false, site, stamp: ''}));
-    });
+    const installerURL = makeInstallerURL(
+      version,
+      arch,
+      distribution,
+      variant,
+      process.platform as Platform,
+      site
+    );
+    try {
+      const stamp = await getSnapshotSiteStamp(root);
+      const ok = await headSnapshotSiteInstaller(installerURL);
+      return {ok, site, stamp};
+    } catch {
+      return {ok: false, site: site, stamp: ''};
+    }
   });
   const results = (await Promise.all(promises))
     .filter(r => r.ok)
@@ -429,6 +437,39 @@ export async function selectSnapshotSite(): Promise<SnapshotSite> {
     throw new Error('no live snapshot sites found');
   }
   return results[0].site;
+}
+
+function headSnapshotSiteInstaller(url: string): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    const req = https
+      .request(url, {method: 'HEAD'}, res => {
+        if (res.statusCode !== 200) {
+          reject(res);
+          return;
+        }
+        resolve(true);
+      })
+      .on('error', () => reject());
+    req.end();
+  });
+}
+
+function getSnapshotSiteStamp(site: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    https
+      .get(`${site}/snapshots/current/stamp.txt`, res => {
+        if (res.statusCode !== 200) {
+          reject(res);
+          return;
+        }
+
+        let data = '';
+        res.on('error', () => reject(res));
+        res.on('data', chunk => (data += chunk));
+        res.on('end', () => resolve(data.trim()));
+      })
+      .on('error', () => reject());
+  });
 }
 
 export function parseSnapshotSiteOption(s: string): SnapshotSiteOption {

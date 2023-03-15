@@ -2,7 +2,12 @@ import * as common from '../src/common';
 
 describe('selectSnapshotSite', () => {
   it('checks the known snapshot sites and returns the best one', async () => {
-    const site = await common.selectSnapshotSite();
+    const site = await common.selectSnapshotSite(
+      'current',
+      'x64',
+      'full',
+      'CS'
+    );
     expect(['utah', 'northwestern'].indexOf(site)).toBeGreaterThan(-1);
   });
 });

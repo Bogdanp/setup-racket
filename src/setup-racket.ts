@@ -10,27 +10,6 @@ import * as common from './common';
       });
     }
 
-    let snapshotSiteOpt: common.SnapshotSiteOption = 'auto';
-    const snapshotSiteInput = core.getInput('snapshot_site');
-    if (snapshotSiteInput !== '') {
-      snapshotSiteOpt = common.parseSnapshotSiteOption(snapshotSiteInput);
-    }
-    let snapshotSite: common.SnapshotSite = 'none';
-    if (snapshotSiteOpt === 'auto') {
-      if (version === 'current') {
-        snapshotSite = await core.group(
-          'Selecting snapshot site...',
-          async () => {
-            const site = await common.selectSnapshotSite();
-            core.info(`site = ${site}`);
-            return site;
-          }
-        );
-      }
-    } else {
-      snapshotSite = snapshotSiteOpt;
-    }
-
     const arch = common.parseArch(core.getInput('architecture') || 'x64');
     const distribution = common.parseDistribution(
       core.getInput('distribution') || 'full'
@@ -53,6 +32,32 @@ import * as common from './common';
         `Racket CS was first released in version 7.4. You've requested version '${version}'.`
       );
       return;
+    }
+
+    let snapshotSiteOpt: common.SnapshotSiteOption = 'auto';
+    const snapshotSiteInput = core.getInput('snapshot_site');
+    if (snapshotSiteInput !== '') {
+      snapshotSiteOpt = common.parseSnapshotSiteOption(snapshotSiteInput);
+    }
+    let snapshotSite: common.SnapshotSite = 'none';
+    if (snapshotSiteOpt === 'auto') {
+      if (version === 'current') {
+        snapshotSite = await core.group(
+          'Selecting snapshot site...',
+          async () => {
+            const site = await common.selectSnapshotSite(
+              version,
+              arch,
+              distribution,
+              variant
+            );
+            core.info(`site = ${site}`);
+            return site;
+          }
+        );
+      }
+    } else {
+      snapshotSite = snapshotSiteOpt;
     }
 
     const dest = core.getInput('dest');
