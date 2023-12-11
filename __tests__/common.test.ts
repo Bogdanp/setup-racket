@@ -12,10 +12,10 @@ describe('selectSnapshotSite', () => {
   });
 });
 
-describe('fetchStableVersion', () => {
+describe('lookupStableVersion', () => {
   it('gets the current stable version from racket-lang.org', async () => {
-    const version = Number(await common.lookupStableVersion());
-    expect(version).toBeGreaterThan(7.8);
+    const version = common.parseVersion(await common.lookupStableVersion());
+    expect(version).toBeGreaterThan(common.parseVersion("7.8") as number);
   });
 });
 
