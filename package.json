@@ -36,7 +36,7 @@
     "@types/node": "^12.0.4",
     "@types/semver": "^6.0.0",
     "jest": "^27.5.1",
-    "jest-circus": "^24.7.1",
+    "jest-circus": "^29.7.0",
     "prettier": "^1.17.1",
     "rollup": "^2.47.0",
     "ts-jest": "^27.1.4",
