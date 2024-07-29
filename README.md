@@ -21,7 +21,7 @@ steps:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
     distribution: 'full' # or: 'minimal' (but you probably don't want 'minimal', see note at the bottom of this doc)
     variant: 'CS'        # or: 'BC' for Racket Before Chez
-    version: '8.11'      # or: 'stable' for the latest version, 'current' for the latest snapshot, 'pre-release' for the latest pre-release build
+    version: '8.14'      # or: 'stable' for the latest version, 'current' for the latest snapshot, 'pre-release' for the latest pre-release build
 - run: racket hello.rkt
 ```
 
@@ -35,7 +35,7 @@ steps:
     architecture: 'x64'
     distribution: 'full'
     variant: 'CS'
-    version: '8.11'
+    version: '8.14'
 - run: raco pkg install --auto component koyo
 - run: racket hello.rkt
 ```
@@ -56,7 +56,7 @@ steps:
     architecture: 'x64'
     distribution: 'full'
     variant: 'CS'
-    version: '8.11'
+    version: '8.14'
     dest: '/opt/racket' # ignored on macOS and Windows
 - run: racket hello.rkt
 ```
@@ -79,7 +79,7 @@ steps:
     architecture: 'x64'
     distribution: 'full'
     variant: 'CS'
-    version: '8.11'
+    version: '8.14'
     dest: '$GITHUB_WORKSPACE/racket'
     sudo: never # either 'always' or 'never'
 - run: "$GITHUB_WORKSPACE/racket/bin/racket" hello.rkt
@@ -93,7 +93,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        racket-version: [ '8.8', '8.9', '8.10', '8.11' ]
+        racket-version: [ '8.11', '8.12', '8.13', '8.14' ]
     name: Racket ${{ matrix.racket-version }} sample
     steps:
       - uses: actions/checkout@master
@@ -115,7 +115,7 @@ steps:
     architecture: 'x64'
     distribution: 'minimal'
     variant: 'CS'
-    version: '8.11'
+    version: '8.14'
     dest: '/opt/racket'
     sudo: never
     local_catalogs: $GITHUB_WORKSPACE

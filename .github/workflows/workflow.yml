@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-        racket-version: ["8.8", "8.9", "stable", "current", "pre-release"]
+        racket-version: ["8.12", "8.13", "stable", "current", "pre-release"]
         racket-variant: ["BC", "CS"]
     steps:
     - name: Checkout
@@ -25,7 +25,7 @@ jobs:
         node-version: 17.x
 
     - name: Cache node_modules
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: node_modules
         key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
@@ -86,15 +86,15 @@ jobs:
   run_docker:
     name: "Build in Docker"
     runs-on: ubuntu-latest
-    container: debian:buster-slim
+    container: debian:bookworm-slim
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - uses: Bogdanp/setup-racket@master
       with:
         architecture: 'x64'
         distribution: 'full'
         variant: 'CS'
-        version: '8.9'
+        version: '8.14'
     - name: test racket
       run: racket -e '(displayln 42)'
 
@@ -103,7 +103,7 @@ jobs:
     runs-on: ubuntu-latest
     container: debian:buster-slim
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - run: apt-get update && apt-get install --no-install-recommends -y sqlite3
     - uses: Bogdanp/setup-racket@master
       with:
@@ -141,14 +141,14 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'BC'
-        INPUT_VERSION: '8.9'
+        INPUT_VERSION: '8.14'
         INPUT_DEST: /opt/racketbc
 
     - name: install CS
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.9'
+        INPUT_VERSION: '8.14'
         INPUT_DEST: /opt/racketcs
 
     - name: test BC
@@ -186,7 +186,7 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.9'
+        INPUT_VERSION: '8.14'
         INPUT_DEST: '${HOME}/racket'
         INPUT_SUDO: never
 
@@ -227,7 +227,7 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.9'
+        INPUT_VERSION: '8.14'
         INPUT_DEST: '/opt/racket'
         INPUT_SUDO: always
 
@@ -280,7 +280,7 @@ jobs:
       run: node lib/setup-racket.js
       env:
         INPUT_VARIANT: 'CS'
-        INPUT_VERSION: '8.9'
+        INPUT_VERSION: '8.14'
         INPUT_DISTRIBUTION: 'minimal'
         INPUT_DEST: '/opt/racket'
         INPUT_SUDO: never
