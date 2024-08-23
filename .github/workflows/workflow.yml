@@ -101,7 +101,7 @@ jobs:
   run_docker_catalogs_packages:
     name: "Build in Docker with custom catalogs and install packages"
     runs-on: ubuntu-latest
-    container: debian:buster-slim
+    container: debian:bookworm-slim
     steps:
     - uses: actions/checkout@v4
     - run: apt-get update && apt-get install --no-install-recommends -y sqlite3
@@ -110,8 +110,8 @@ jobs:
         architecture: 'x64'
         distribution: 'full'
         variant: 'CS'
-        version: '8.9'
-        catalogs: 'http://racksnaps.defn.io/built-snapshots/2020/05/02/catalog/'
+        version: '8.14'
+        catalogs: 'https://racksnaps.defn.io/built-snapshots/2024/08/23/catalog/'
         packages: nevermore, component
     - name: test racket
       run: racket -e '(require nevermore) (american-gods)'
