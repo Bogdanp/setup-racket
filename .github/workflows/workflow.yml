@@ -20,15 +20,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v4
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - name: npm install
       run: npm install
@@ -124,15 +119,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - run: npm install
     - run: npm run build
@@ -169,15 +159,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - run: npm install
     - run: npm run build
@@ -210,15 +195,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - run: npm install
     - run: npm run build
@@ -260,15 +240,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - run: npm install
     - run: npm run build
@@ -300,15 +275,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - run: npm install
     - run: npm run build
@@ -333,15 +303,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - run: npm install
     - run: npm run build
@@ -366,15 +331,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - run: npm install
     - run: npm run build
@@ -401,15 +361,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: Setup Node.js 17.x
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v4
       with:
         node-version: 17.x
-
-    - name: Cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        cache: npm
 
     - name: npm install
       run: npm install
