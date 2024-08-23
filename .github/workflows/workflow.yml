@@ -104,7 +104,7 @@ jobs:
     container: debian:bookworm-slim
     steps:
     - uses: actions/checkout@v4
-    - run: apt-get update && apt-get install --no-install-recommends -y sqlite3
+    - run: apt-get update && apt-get install --no-install-recommends -y ca-certificates openssl sqlite3
     - uses: Bogdanp/setup-racket@master
       with:
         architecture: 'x64'
