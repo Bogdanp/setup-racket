@@ -230,6 +230,10 @@ describe('makeInstallerURL', () => {
         'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-current-x86_64-linux-cs.sh'
       ],
       [
+        ['current', 'x64', 'test', 'CS', 'linux', 'northwestern'],
+        'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-test-current-x86_64-linux-cs.sh'
+      ],
+      [
         ['current', 'x64', 'minimal', 'BC', 'linux', 'northwestern'],
         'https://plt.cs.northwestern.edu/snapshots/current/installers/racket-minimal-current-x86_64-linux-bc.sh'
       ],

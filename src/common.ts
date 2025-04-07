@@ -8,7 +8,7 @@ import * as path from 'path';
 
 export type Arch = 'aarch64' | 'arm32' | 'arm64' | 'x86' | 'x64';
 export type Variant = 'BC' | 'CS';
-export type Distribution = 'minimal' | 'full';
+export type Distribution = 'full' | 'minimal' | 'test';
 export type Platform = 'darwin' | 'linux' | 'win32';
 export type UseSudo = 'always' | 'never' | '';
 export type SnapshotSite = 'none' | 'utah' | 'northwestern';
@@ -25,6 +25,12 @@ const RACKET_ARCHS: {[key: string]: string} = {
   'x64-linux': 'x86_64',
   'x86-win32': 'i386',
   'x64-win32': 'x86_64'
+};
+
+const RACKET_DISTROS: {[key: string]: string} = {
+  full: 'racket',
+  test: 'racket-test',
+  minimal: 'racket-minimal'
 };
 
 const RACKET_PLATFORMS: {[key: string]: string} = {
@@ -55,7 +61,7 @@ export function makeInstallerURL(
   const racketExt = RACKET_EXTS[platform];
 
   let base = `https://download.racket-lang.org/installers/${version}`;
-  let prefix = distribution === 'minimal' ? 'racket-minimal' : 'racket';
+  let prefix = RACKET_DISTROS[distribution];
   let maybeSuffix = '';
 
   if (variant === 'BC' && cmpVersions(version, '8.0') >= 0) {
@@ -305,7 +311,7 @@ export function parseVariant(s: string): Variant {
 }
 
 export function parseDistribution(s: string): Distribution {
-  if (s !== 'minimal' && s !== 'full') {
+  if (s !== 'minimal' && s !== 'test' && s !== 'full') {
     throw new Error(`invalid distribution '${s}'`);
   }
 
