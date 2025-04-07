@@ -3,7 +3,7 @@ import * as common from './common';
 
 (async function() {
   try {
-    let version = core.getInput('version', {required: true});
+    let version = core.getInput('version') || 'stable';
     if (version === 'stable') {
       version = await core.group('Looking up stable version...', async () => {
         return await common.lookupStableVersion();
@@ -21,7 +21,6 @@ import * as common from './common';
     }
 
     const variant = common.parseVariant(variantInput);
-
     if (common.cmpVersions(version, '6.5') === -1) {
       core.setFailed(
         `Versions prior to 6.5 are not supported. You've requested version '${version}'.`

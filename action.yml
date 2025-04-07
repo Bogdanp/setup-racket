@@ -16,7 +16,7 @@ inputs:
     default: ''
   version:
     description: 'Racket version to use.'
-    required: true
+    default: 'stable'
   snapshot_site:
     description: "The site to download snapshot versions from ('auto', 'utah' or 'northwestern')."
     default: 'auto'
