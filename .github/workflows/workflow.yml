@@ -355,7 +355,7 @@ jobs:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
         racket-version: ["current"]
         racket-variant: ["BC", "CS"]
-        racket-distribution: ["full", "minimal"]
+        racket-distribution: ["full", "minimal", "test"]
     steps:
     - name: Checkout
       uses: actions/checkout@master
