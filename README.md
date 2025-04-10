@@ -16,7 +16,7 @@ tutorial on how to use it.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.12
+- uses: Bogdanp/setup-racket@v1.13
   with:
     architecture: 'x64'  # or: 'x64', 'x86', 'arm32', 'arm64' (or 'aarch64')
     distribution: 'full' # or: 'minimal' (but you probably don't want 'minimal', see note at the bottom of this doc), or 'test' (only on 'current' Northwestern snapshot)
@@ -30,7 +30,7 @@ steps:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.12
+- uses: Bogdanp/setup-racket@v1.13
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -51,7 +51,7 @@ for an example.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.12
+- uses: Bogdanp/setup-racket@v1.13
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -74,7 +74,7 @@ Only on Linux. The default is to use `sudo` if the command exists.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.12
+- uses: Bogdanp/setup-racket@v1.13
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -98,7 +98,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Setup Racket
-        uses: Bogdanp/setup-racket@v1.12
+        uses: Bogdanp/setup-racket@v1.13
         with:
           architecture: x64
           version: ${{ matrix.racket-version }}
@@ -110,7 +110,7 @@ jobs:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.12
+- uses: Bogdanp/setup-racket@v1.13
   with:
     architecture: 'x64'
     distribution: 'minimal'
@@ -140,7 +140,7 @@ site using the `snapshot_site` option.
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.12
+- uses: Bogdanp/setup-racket@v1.13
   with:
     architecture: 'x64'
     distribution: 'full'
@@ -168,12 +168,17 @@ distribution if you really know what you're doing.
 
 ### CPU Architecture Notes
 
-Installers for `arm32` are only currently available when the `version`
-is `current` and `arm64` installers are currently not available at
-all.
+ARM builds have limited availability depending on the target version,
+platform and snapshot site:
 
-Installers for Apple Silicon Macs are available when the version is
-`current` and the arch is either `arm64` or `aarch64`.
+| Arch    | Platform | Snapshot Site      | Available Versions |
+|---------|----------|--------------------|--------------------|
+| `arm32` | Linux    | Utah               | `current`          |
+| `arm64` | Linux    | Utah               | `current`          |
+| `arm64` | macOS    | Utah, Northwestern | `8.0-current`      |
+| `arm64` | Windows  | Utah               | `8.14-current`     |
+
+ARM builds are not available for the BC variant of Racket.
 
 ### Using `racket/gui`
 
@@ -184,7 +189,7 @@ use [gabrielbb/xvfb-action] to run your code like so:
 ```yaml
 steps:
 - uses: actions/checkout@master
-- uses: Bogdanp/setup-racket@v1.12
+- uses: Bogdanp/setup-racket@v1.13
 - uses: GabrielBB/xvfb-action@v1
   with:
       run: racket hello.rkt
