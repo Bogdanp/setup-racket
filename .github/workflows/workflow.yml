@@ -12,9 +12,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["macos-latest", "ubuntu-latest", "windows-latest"]
-        racket-version: ["8.12", "8.13", "stable", "current", "pre-release"]
+        os: ["macos-13", "macos-14", "macos-15", "ubuntu-22.04", "ubuntu-24.04", "ubuntu-24.04-arm", "windows-2019", "windows-2022", "windows-2025"]
+        racket-version: ["8.15", "8.16", "stable", "current", "pre-release"]
         racket-variant: ["BC", "CS"]
+        exclude:
+          - os: "macos-14"
+            racket-variant: "BC"
+          - os: "macos-15"
+            racket-variant: "BC"
+          - os: "ubuntu-24.04-arm"
+        include:
+          - os: "ubuntu-24.04-arm"
+            racket-version: "current"
+            racket-variant: "CS"
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -356,6 +366,9 @@ jobs:
         racket-version: ["current"]
         racket-variant: ["BC", "CS"]
         racket-distribution: ["full", "minimal", "test"]
+        exclude:
+          - os: "macos-latest"
+            racket-variant: "BC"
     steps:
     - name: Checkout
       uses: actions/checkout@master

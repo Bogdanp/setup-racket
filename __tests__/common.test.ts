@@ -130,6 +130,10 @@ describe('makeInstallerURL', () => {
         'https://download.racket-lang.org/installers/8.0/racket-8.0-x86_64-win32-cs.exe'
       ],
       [
+        ['8.16', 'arm64', 'full', 'CS', 'win32', 'none'],
+        'https://download.racket-lang.org/installers/8.16/racket-8.16-arm64-win32-cs.exe'
+      ],
+      [
         ['current', 'x86', 'full', 'CS', 'linux', 'utah'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-i386-linux-cs.sh'
       ],
@@ -196,6 +200,22 @@ describe('makeInstallerURL', () => {
       [
         ['current', 'arm32', 'minimal', 'BC', 'linux', 'utah'],
         'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-arm-linux-bc.sh'
+      ],
+      [
+        ['current', 'aarch64', 'full', 'CS', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-linux-cs.sh'
+      ],
+      [
+        ['current', 'aarch64', 'minimal', 'CS', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-linux-cs.sh'
+      ],
+      [
+        ['current', 'aarch64', 'full', 'BC', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-current-aarch64-linux-bc.sh'
+      ],
+      [
+        ['current', 'aarch64', 'minimal', 'BC', 'linux', 'utah'],
+        'https://users.cs.utah.edu/plt/snapshots/current/installers/racket-minimal-current-aarch64-linux-bc.sh'
       ],
       [
         ['current', 'aarch64', 'full', 'CS', 'darwin', 'utah'],
