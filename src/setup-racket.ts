@@ -1,3 +1,4 @@
+import * as process from 'process';
 import * as core from '@actions/core';
 import * as common from './common';
 
@@ -10,7 +11,9 @@ import * as common from './common';
       });
     }
 
-    const arch = common.parseArch(core.getInput('architecture') || 'x64');
+    const arch = common.parseArch(
+      core.getInput('architecture') || process.arch
+    );
     const distribution = common.parseDistribution(
       core.getInput('distribution') || 'full'
     );
