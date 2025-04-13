@@ -16,9 +16,12 @@ export type SnapshotSiteOption = 'auto' | SnapshotSite;
 
 const RACKET_ARCHS: {[key: string]: string} = {
   'aarch64-darwin': 'aarch64',
+  'aarch64-linux': 'aarch64',
+  'aarch64-win32': 'arm64',
   'arm32-linux': 'arm',
-  'arm64-linux': 'arm64',
+  'arm64-linux': 'aarch64',
   'arm64-darwin': 'aarch64',
+  'arm64-win32': 'arm64',
   'x86-darwin': 'i386',
   'x64-darwin': 'x86_64',
   'x86-linux': 'i386',
@@ -428,6 +431,7 @@ export async function selectSnapshotSite(
       process.platform as Platform,
       site
     );
+    core.info(`checking '${installerURL}'`);
     try {
       const stamp = await getSnapshotSiteStamp(root);
       const ok = await headSnapshotSiteInstaller(installerURL);
