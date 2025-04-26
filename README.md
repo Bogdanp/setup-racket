@@ -156,7 +156,7 @@ steps:
 
 ## Gotchas
 
-### `minimal` vs `full` distribution
+### Distributions
 
 Using the `full` distribution instead of the `minimal` distribution
 will reduce your build times for most use cases.  Things you typically
@@ -166,7 +166,7 @@ downloading and installing those dependencies.  The `full` distribution
 comes with those dependencies pre-installed.  Only use the `minimal`
 distribution if you really know what you're doing.
 
-### CPU Architecture Notes
+### ARM Builds
 
 ARM builds have limited availability depending on the target version,
 platform and snapshot site:
