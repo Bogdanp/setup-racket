@@ -21,6 +21,12 @@ jobs:
           - os: "macos-15"
             racket-variant: "BC"
           - os: "ubuntu-24.04-arm"
+          - racket-variant: "BC"
+            racket-version: "stable"
+          - racket-variant: "BC"
+            racket-version: "current"
+          - racket-variant: "BC"
+            racket-version: "pre-release"
         include:
           - os: "ubuntu-24.04-arm"
             racket-version: "current"
