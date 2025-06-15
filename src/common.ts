@@ -8,7 +8,7 @@ import * as path from 'path';
 
 export type Arch = 'aarch64' | 'arm32' | 'arm64' | 'x86' | 'x64';
 export type Variant = 'BC' | 'CS';
-export type Distribution = 'full' | 'minimal' | 'test';
+export type Distribution = 'full' | 'minimal';
 export type Platform = 'darwin' | 'linux' | 'win32';
 export type UseSudo = 'always' | 'never' | '';
 export type SnapshotSite = 'none' | 'utah' | 'northwestern';
@@ -32,7 +32,6 @@ const RACKET_ARCHS: {[key: string]: string} = {
 
 const RACKET_DISTROS: {[key: string]: string} = {
   full: 'racket',
-  test: 'racket-test',
   minimal: 'racket-minimal'
 };
 
@@ -314,7 +313,7 @@ export function parseVariant(s: string): Variant {
 }
 
 export function parseDistribution(s: string): Distribution {
-  if (s !== 'minimal' && s !== 'test' && s !== 'full') {
+  if (s !== 'minimal' && s !== 'full') {
     throw new Error(`invalid distribution '${s}'`);
   }
 
