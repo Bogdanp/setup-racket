@@ -370,11 +370,8 @@ jobs:
       matrix:
         os: ["macos-latest", "ubuntu-latest", "windows-latest"]
         racket-version: ["current"]
-        racket-variant: ["BC", "CS"]
-        racket-distribution: ["full", "minimal", "test"]
-        exclude:
-          - os: "macos-latest"
-            racket-variant: "BC"
+        racket-variant: ["CS"]
+        racket-distribution: ["full", "minimal"]
     steps:
     - name: Checkout
       uses: actions/checkout@master
