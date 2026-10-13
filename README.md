@@ -195,6 +195,10 @@ steps:
       run: racket hello.rkt
 ```
 
+### Racket BC bundles
+
+Racket has stopped distributing BC **binary bundles** since [8.18](https://blog.racket-lang.org/2025/08/racket-v8-18.html).
+Both `current` and `stable` do not support the BC variant.
 
 ## License
 

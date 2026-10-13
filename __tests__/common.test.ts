@@ -50,6 +50,7 @@ describe('cmpVersions', () => {
       ['pre-release', 'pre-release', 0],
       ['pre-release', '8.2', 1],
       ['8.2', 'pre-release', -1],
+      ['current', '8.18', 1], // for checking BC installers
       ['6.5', '7.3', -1],
       ['10.9', '6.5', 1],
       ['6.5', '6.5', 0]
