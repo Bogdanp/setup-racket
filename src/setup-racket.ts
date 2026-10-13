@@ -34,6 +34,11 @@ import * as common from './common';
         `Racket CS was first released in version 7.4. You've requested version '${version}'.`
       );
       return;
+    } else if (variant === 'BC' && (version === 'stable' || common.cmpVersions(version, '8.18') >= 0)) {
+      core.setFailed(
+        `Racket BC binary bundles were not available since version 8.18. You've requested version '${version}'.`
+      );
+      return;
     }
 
     let snapshotSiteOpt: common.SnapshotSiteOption = 'auto';
